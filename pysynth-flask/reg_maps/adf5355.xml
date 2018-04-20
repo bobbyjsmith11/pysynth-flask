@@ -1,0 +1,500 @@
+<?xml version="1.0"?>
+<register_map name="ADF5355" num_bits="32">
+    <register address="0x00" default_value="0x2006B0" name="REG0">
+        <field name="INT" bits="19:4">
+        The 16 INT bits (Bits[DB19:DB4]) set the INT value, which
+        determines the integer part of the feedback division factor. The
+        INT value is used in Equation 3 (see the INT, FRAC, MOD, and
+        R Counter Relationship section). All integer values from 23 to
+        32,767 are allowed for the 4/5 prescaler. For the 8/9 prescaler,
+        the minimum integer value is 75, and the maximum value is
+        65,535.
+        </field>
+        <field name="PRESCALER" bits="20">
+        The dual modulus prescaler (P/P + 1), along with the INT,
+        FRACx, and MODx counters, determines the overall division
+        ratio from the VCO output to the PFD input. The PR1 bit
+        (Bit DB20) in Register 0 sets the prescaler value.
+        Operating at CML levels, the prescaler takes the clock from the
+        VCO output and divides it down for the counters. It is based on
+        a synchronous 4/5 core. When the prescaler is set to 4/5, the
+        maximum RF frequency allowed is 7 GHz. The prescaler limits
+        the INT value; therefore, if P is 4/5, NMIN is 23, and if P is 8/9,
+        NMIN is 75.
+        </field>
+        <field name="AUTOCAL" bits="21">
+        Write to Register 0 to enact (by default) the VCO automatic
+        calibration, and to choose the appropriate VCO and VCO
+        subband. Write 1 to the AC1 bit (Bit DB21) to enable the
+        automatic calibration, which is the recommended mode of
+        operation.
+        Set the AC1 bit (Bit DB21) to 0 to disable the automatic
+        calibration, which leaves the ADF5355 in the same band it was
+        already in when Register 0 is updated.
+        Disable the automatic calibration only for fixed frequency
+        applications, phase adjust applications, or very small (&lt;10 kHz)
+        frequency jumps.
+        Toggling automatic calibration (AUTOCAL) is also required
+        when changing frequency. See the Frequency Update Sequence
+        section for more information.
+        </field>
+        <field name="RESERVED0" bits="31:22">
+        Must be set to 0
+        </field>
+        <field name="CTL0" bits="3:0">
+        control bits. 0x0
+        </field>
+    </register>
+    
+    <register address="0x01" default_value="0x6C00001" name="REG1">
+        <field name="RESERVED1" bits="31:28">
+        Must be set to 0
+        </field>
+        <field name="FRAC1" bits="27:4">
+        The 24 FRAC1 bits (Bits[DB27:DB4]) set the numerator of the
+        fraction that is input to the Σ-Δ modulator. This fraction, along
+        with the INT value, specifies the new frequency channel that
+        the synthesizer locks to, as shown in the RF Synthesizer—A
+        Worked Example section. FRAC1 values from 0 to (MOD1 − 1)
+        cover channels over a frequency range equal to the PFD
+        reference frequency.
+        </field>
+        <field name="CTL1" bits="3:0">
+        control bits. 0x1
+        </field>
+    </register>
+
+    <register address="0x02" default_value="0x00000012" name="REG2">
+        <field name="FRAC2" bits="31:18">
+        The 16 INT bits (Bits[DB19:DB4]) set the INT value, which
+        determines the integer part of the feedback division factor. The
+        INT value is used in Equation 3 (see the INT, FRAC, MOD, and
+        R Counter Relationship section). All integer values from 23 to
+        32,767 are allowed for the 4/5 prescaler. For the 8/9 prescaler,
+        the minimum integer value is 75, and the maximum value is
+        65,535.
+        </field>
+        <field name="MOD2" bits="17:4">
+        The 14-bit auxiliary modulus value (Bits[DB17:DB4]) sets the
+        auxiliary fractional modulus. Use MOD2 to correct any residual
+        error due to the main fractional modulus.
+        </field>
+        <field name="CTL2" bits="3:0">
+        control bits. 0x2
+        </field>
+    </register>
+
+    <register address="0x03" default_value="0x00000003" name="REG3">
+        <field name="RESERVED3" bits="31">
+        Must be 0
+        </field>
+        <field name="SD_LOAD_RESET" bits="30">
+        When writing to Register 0, the Σ-Δ modulator resets. For
+        applications in which the phase is continually adjusted, this may
+        not be desirable; therefore, in these cases, the Σ-Δ reset can be
+        disabled by writing a 1 to the SD1 bit (Bit DB30).
+        </field>
+        <field name="PHASE_RESYNC_EN" bits="29">
+        To use the phase resynchronization feature, the PR1 bit (Bit DB29)
+        must be set to 1. If unused, the bit can be programmed to 0. The
+        phase resync timer must also be used in Register 12 to ensure
+        that the resynchronization feature is applied after PLL has settled to
+        the final frequency. If the PLL has not settled to the final frequency,
+        phase resync may not function correctly. Resynchronization is
+        useful in phased array and beam forming applications. It ensures
+        repeatability of output phase when programming the same
+        frequency. In phase critical applications that use frequencies
+        requiring the output divider (&lt;3400 MHz), it is necessary to
+        feed the N divider with the divided VCO frequency as distinct
+        from the fundamental VCO frequency.
+        This is achieved by programming the D13 bit (Bit DB24) in
+        Register 6 to 0, which ensures divided feedback to the N divider.
+        Phase resynchronization operates only when FRAC2 = 0.
+        For resync applications, enable the SD load reset in Register 3
+        by setting DB30 to 0.
+        </field>
+        <field name="PHASE_ADJUST" bits="28">
+        To adjust the relative output phase of the ADF5355 on each
+        Register 0 update, set the PA1 bit (Bit DB28) to 1. This feature
+        differs from the resynchronization feature in that it is useful
+        when adjustments to phase are made continually in an
+        application. For this function, disable the VCO automatic
+        calibration by setting the AC1 bit (Bit DB21) in Register 0 to 0,
+        and disable the SD load reset by setting the SD1 bit (Bit DB30)
+        in Register 3 to 1. Note that phase resync and phase adjust
+        cannot be used simultaneously.
+        </field>
+        <field name="PHASE" bits="27:4">
+        The phase of the RF output frequency can adjust in 24-bit steps,
+        from 0° (0) to 360° (224 − 1). For phase adjust applications, the
+        phase is set by
+        (Phase Value/16,777,216) × 360°
+        When the phase value is programmed to Register 3, each
+        subsequent adjustment of Register 0 increments the phase by
+        the value in this equation.
+        </field>
+        
+        <field name="CTL3" bits="3:0">
+        control bits. 0x3
+        </field>
+    </register>
+
+    <register address="0x04" default_value="0x32008B84" name="REG4">
+        <field name="RESERVED4" bits="31:30">
+        Must be 0.
+        </field>
+        <field name="MUXOUT" bits="29:27">
+        The on-chip multiplexer (MUXOUT) is controlled by
+        Bits[DB29:DB27]. For additional details, see Figure 45.
+        When changing frequency, that is, writing Register 0, MUXOUT
+        must not be set to N divider output or R divider output. If needed,
+        enable these functions after locking to the new frequency.
+        0x00: three-state output
+        0x01: DVDD
+        0x02: DGND
+        0x03: R divider output
+        0x04: N divicer output
+        0x05: analog lock detect
+        0x06: digital lock detect
+        0x07: reserved
+        </field>
+        <field name="REF_DBLR" bits="26">
+        Setting the RD2 bit (Bit DB26) to 0 feeds the reference frequency
+        signal directly to the 10-bit R counter, disabling the doubler.
+        Setting this bit to 1 multiplies the reference frequency by a factor
+        of 2 before feeding it into the 10-bit R counter. When the doubler
+        is disabled, the REFIN falling edge is the active edge at the PFD
+        input to the fractional synthesizer. When the doubler is enabled,
+        both the rising and falling edges of the reference frequency become
+        active edges at the PFD input.
+        The maximum allowable reference frequency when the doubler
+        is enabled is 100 MHz.
+        </field>
+        <field name="RDIV2" bits="25">
+        Setting the RDIV2 bit (Bit DB25) to 1 inserts a divide by 2,
+        toggle flip-flop between the R counter and PFD, which extends
+        the maximum reference frequency input rate. This function
+        provides a 50% duty cycle signal at the PFD input.
+        </field>
+        <field name="R" bits="24:15">
+        The 10-bit R counter divides the input reference frequency
+        (REFIN) to produce the reference clock to the PFD. Division
+        ratios range from 1 to 1023.
+        </field>
+        <field name="DBL_BUF" bits="14">
+        The D1 bit (Bit DB14) enables or disables double buffering of
+        the RF divider select bits (Bits[DB23:DB21]) in Register 6. The
+        Program Modes section explains how double buffering works.
+        </field>
+        <field name="CP_CURRENT" bits="13:10">
+        The CP4 to CP1 bits (Bits[DB13:DB10]) set the charge pump
+        current. Set this value to the charge pump current that the loop
+        filter is designed with (see Figure 45). For the lowest spurs, the
+        0.9 mA setting is recommended.
+        </field>
+        <field name="REF_MODE" bits="9">
+        The ADF5355 permits use of either differential or single-ended
+        reference sources.
+        For optimum integer boundary spur performance, it is
+        recommended to use the single-ended setting for all references
+        up to 250 MHz (even if using a differential reference signal). Use
+        the differential setting for reference frequencies above 250 MHz.
+        </field>
+        <field name="MUX_LOGIC" bits="8">
+        To assist with logic compatibility, MUXOUT is programmable to
+        two logic levels. Set the U5 bit (Bit DB8) to 0 to select 1.8 V
+        logic, and set it to 1 to select 3.3 V logic.
+        </field>
+        <field name="PD_POLARITY" bits="7">
+        The U4 bit (Bit DB7) sets the phase detector polarity. When a
+        passive loop filter or a noninverting active loop filter is used, set
+        DB7 to 1 (positive). If an active filter with an inverting
+        characteristic is used, set this bit to 0 (negative).
+        </field>
+        <field name="PD" bits="6">
+        The U3 bit (Bit DB6) sets the programmable power-down mode.
+        Setting DB6 to 1 performs a power-down. Setting DB6 to 0 returns
+        the synthesizer to normal operation. In software or hardware
+        power-down mode, the ADF5355 retains all information in its
+        registers. The register contents are only lost if the supply voltages
+        are removed.
+        When power-down activates, the following events occur:
+        • The synthesizer counters are forced to their load state
+        conditions.
+        • The VCO powers down.
+        • The charge pump is forced into three-state mode.
+        • The digital lock detect circuitry resets.
+        • The RFOUTA+/RFOUTA− and RFOUTB output stages are
+        disabled.
+        • The input registers remain active and capable of loading
+        and latching data.
+        </field>
+        <field name="CP_3STATE" bits="5">
+        Setting the U2 bit (Bit DB5) to 1 puts the charge pump into
+        three-state mode. Set DB5 to 0 for normal operation.
+        </field>
+        <field name="COUNTER_RESET" bits="4">
+        The U1 bit (Bit DB4) resets the R counter, N counter, and VCO
+        band select of the ADF5355. When DB4 is set to 1, the RF
+        synthesizer N counter, R counter, and VCO band select are reset.
+        For normal operation, set DB4 to 0.
+        Toggling counter reset is also required when changing frequency.
+        See the Frequency Update Sequence section for more information.
+        </field>
+        
+        <field name="CTL4" bits="3:0">
+        control bits. 0x4
+        </field>
+    </register>
+
+    <register address="0x05" default_value="0x00800025" name="REG5">
+        <field name="RESERVED5" bits="31:4">
+        The bits in Register 5 are reserved and must be programmed as
+        described in Figure 46, using a hexadecimal word of 0x00800025.
+        </field>
+        <field name="CTL5" bits="3:0">
+        control bits. 0x5
+        </field>
+    </register>
+
+    <register address="0x06" default_value="0x35012076" name="REG6">
+        <field name="RESERVED6" bits="31">
+        Must be 0.
+        </field>
+        <field name="GATED_BLEED" bits="30">
+        Bleed currents can be used for improving phase noise and spurs;
+        however, due to a potential impact on lock time, the gated bleed
+        bit, BL10 (Bit DB30), if set to 1, ensures bleed currents are not
+        switched on until the digital lock detect asserts logic high. Note
+        that this function requires digital lock detect to be enabled.
+        </field>
+        <field name="NEGATIVE_BLEED" bits="29">
+        Use of constant negative bleed is recommended for most
+        fractional-N applications because it improves the linearity of
+        the charge pump, leading to lower noise and spurious signals than
+        leaving it off. To enable negative bleed, write 1 to BL9 (Bit DB29),
+        and to disable negative bleed, write 0 to BL9 (Bit DB29).
+        Do not use negative bleed when operating in integer-N mode,
+        that is, when FRAC1 = FRAC2 = 0, or when fPFD is greater than
+        100 MHz.
+        </field>
+        <field name="RESERVED6_2" bits="28:25">
+        Set to 0xA (0b1010)
+        </field>
+        <field name="FEEDBACK_SEL" bits="24">
+        D13 (Bit DB24) selects the feedback from the output of the
+        VCO to the N counter. When D13 is set to 1, the signal is taken
+        directly from the VCO. When this bit is set to 0, the signal is
+        taken from the output of the output dividers. The dividers
+        enable coverage of the wide frequency band (3.4 GHz to 6.8 GHz).
+        When the divider is enabled and the feedback signal is taken
+        from the output, the RF output signals of two separately
+        configured PLLs are in phase. Divided feedback is useful in
+        some applications where the positive interference of signals is
+        required to increase the power.
+        </field>
+        <field name="RF_DIVIDER_SEL" bits="23:21">
+        D12 to D10 (Bits[DB23:DB21]) select the value of the RF output
+        divider (see Figure 47).
+        </field>
+        <field name="CP_BLEED_CURRENT" bits="20:13">
+        BL8 to BL1 (Bits[DB20:DB13]) control the level of the bleed
+        current added to the charge pump output. This current
+        optimizes the phase noise and spurious levels from the device.
+        Tests have shown that the optimal bleed set is the following:
+        4/N &lt; IBLEED/ICP &lt; 10/N
+        where:
+        N is the value of the feedback counter from the VCO to the PFD.
+        IBLEED is the value of constant negative bleed applied to the
+        charge pump, which is set by the contents of Bits[DB20:DB13].
+        ICP is the value of charge pump current setting, Bits[DB13:DB10] of
+        Register 4.
+        </field>
+        <field name="RESERVED6_B" bits="12">
+        Must be 0.
+        </field>
+        <field name="MTLD" bits="11">
+        When D8 (Bit DB11) is set to 1, the supply current to the RF
+        output stage is shut down until the device achieves lock, as
+        determined by the digital lock detect circuitry.
+        </field>
+        <field name="RF_OUT_B" bits="10">
+        D7 (Bit DB10) enables or disables the high frequency RF output
+        (RFOUTB). If DB10 is set to 0, the auxiliary high frequency RF
+        output is enabled. If DB10 is set to 1, the auxiliary RF output is
+        disabled.
+        </field>
+        <field name="RESERVED6_C" bits="9:7">
+        Must be 0.
+        </field>
+        <field name="RF_OUT_A" bits="6">
+        D3 (Bit DB6) enables or disables the primary RF output
+        (RFOUTA+/RFOUTA−). If DB6 is set to 0, the primary RF output
+        is disabled. If DB6 is set to 1, the primary RF output is enabled.
+        </field>
+        <field name="RF_OUT_PWR" bits="5:4">
+        D2 and D1 (Bits[DB5:DB4]) set the value of the primary RF
+        output power level (see Figure 47).
+        </field>
+
+        <field name="CTL6" bits="3:0">
+        control bits. 0x6
+        </field>
+    </register>
+
+    <register address="0x07" default_value="0x120000E7" name="REG7">
+        
+        <field name="RESERVED7" bits="31:26">
+        Must be set to 0x04 (0b000100)
+        </field>
+        <field name="LE_SYNC" bits="25">
+        When set to 1, Bit DB25 ensures that the load enable (LE) edge
+        is synchronized internally with the rising edge of reference
+        input frequency. This synchronization prevents the rare event of
+        reference and RF dividers loading at the same time as a falling edge
+        of the reference frequency, which can lead to longer lock times.
+        </field>
+        <field name="RESERVED7_A" bits="24:10">
+        Must be 0.
+        </field>
+        <field name="LD_CYCL_CNT" bits="9:8">
+        LD5 and LD4 (Bits[DB9:DB8]) set the number of consecutive
+        cycles counted by the lock detect circuitry before asserting lock
+        detect high. See Figure 48 for details.
+        </field>
+        <field name="LOL_MODE" bits="7">
+        Set the LOL mode bit (Bit DB7) to 1 when the application is a
+        fixed frequency application in which the reference (REFIN) is
+        likely to be removed, such as a clocking application. The standard
+        lock detect circuit assumes that REFIN is always present; however,
+        this may not be the case with clocking applications. To enable this
+        functionality, set DB7 to 1. LOL mode does not function reliably
+        when using differential REFIN mode.
+        </field>
+        <field name="FRACN_LD_PRECISION" bits="6:5">
+        LD3 and LD2 (Bits[DB6:DB5]) set the precision of the lock detect
+        circuitry in fractional-N mode. LDP is available at 5 ns, 6 ns, 8 ns,
+        or 12 ns. If bleed currents are used, use 12 ns.
+        </field>
+        <field name="LD_MODE" bits="4">
+        If LD1 (Bit DB4) is set to 0, each reference cycle is set by
+        fractional-N lock detect precision as described in the
+        Fractional-N Lock Detect Count (LDC) section. If DB4 is
+        set to 1, each reference cycle is 2.9 ns long, which is more
+        appropriate for integer-N applications.
+        </field>
+        
+        <field name="CTL7" bits="3:0">
+        control bits. 0x7
+        </field>
+    </register>
+
+    <register address="0x08" default_value="0x102D0428" name="REG8">
+        <field name="RESERVED8" bits="31:4">
+        The bits in this register are reserved and must be programmed as
+        shown in Figure 49, using a hexadecimal word of 0x102D0428.
+        </field>
+        <field name="CTL8" bits="3:0">
+        control bits. 0x8
+        </field>
+    </register>
+    
+    <register address="0x09" default_value="0x1A19FCC9" name="REG9">
+        <field name="VCO_BAND_DIVISION" bits="31:24">
+        VC8 to VC1 (Bits[DB31:DB24]) set the value of the VCO band
+        division clock. Determine the value of this clock by
+        VCO Band Div = Ceiling(fPFD/2,400,000)
+        </field>
+        <field name="TIMEOUT" bits="23:14">
+        TL10 to TL1 (Bits[DB23:DB14]) set the timeout value for the
+        VCO band select.
+        </field>
+        <field name="AUTO_LVL_TIMEOUT" bits="13:9">
+        AL5 to AL1 (Bits[DB13:DB9]) set the timer value used for the
+        automatic level calibration of the VCO. This function combines
+        the PFD frequency, the timeout variable, and ALC wait variable.
+        Choose the ALC such that the following equation is always
+        greater than 50 μs.
+        ALC Wait &gt; (50 μs × fPFD)/Timeout
+        </field>
+        <field name="SYNTH_LOCK_TIMEOUT" bits="8:4">
+        SL5 to SL1 (Bits[DB8:DB4]) set the synthesizer lock timeout
+        value. This value allows the VTUNE force to settle on the VTUNE
+        pin. The value must be 20 μs. Calculate the value using the
+        following equation:
+        Synthesizer Lock Timeout &gt; (20 μs × fPFD)/Timeout
+        </field>
+        <field name="CTL9" bits="3:0">
+        control bits. 0x9
+        </field>
+    </register>
+    
+    <register address="0x0A" default_value="0x00C026BA" name="REG10">
+        <field name="RESERVED10" bits="31:14">
+        Must be set to 0x300.
+        Bits[DB31:DB14] are reserved. Bits[DB23:DB22] must be set to
+        11, and all other bits in this range must be set to 0.
+        </field>
+        <field name="ADC_CLK_DIV" bits="13:6">
+        An on-board analog-to-digital converter (ADC) determines the
+        VTUNE setpoint relative to the ambient temperature of the
+        ADF5355 environment. The ADC ensures that the initial tuning
+        voltage in any application is chosen correctly to avoid any
+        temperature drift issues.
+        The ADC uses a clock that is equal to the output of the R
+        counter (or the PFD frequency) divided by ADC_CLK_DIV.
+        AD8 to AD1 (Bits[DB13:DB6]) set the value of this divider. On
+        power-up, the R counter is not programmed; however, in these
+        power-up cases, it defaults to R = 1.
+        Choose the value such that
+        ADC_CLK_DIV = Ceiling(((fPFD/100,000) − 2)/4)
+        where Ceiling() rounds up to the nearest integer.
+        For example, for fPFD = 61.44 MHz, set ALC_CLK_DIV = 154
+        so that the ADC clock frequency is 99.417 kHz.
+        If ADC_CLK_DIV is greater than 255, set it to 255.
+        </field>
+        <field name="ADC_CONV" bits="5">
+        AE2 (Bit DB5) ensures that the ADC performs a conversion
+        when a write to Register 10 is performed. It is recommended to
+        enable this mode.
+        </field>
+        <field name="ADC_EN" bits="4">
+        AE1 (Bit DB4), when set to 1, powers up the ADC for the
+        temperature dependent VTUNE calibration. It is recommended to
+        always use this function.
+        </field>
+        <field name="CTL10" bits="3:0">
+        control bits. 0xA
+        </field>
+    </register>
+
+    <register address="0x0B" default_value="0x0061300B" name="REG11">
+        <field name="RESERVED11" bits="31:4">
+        Must be set to 0x61300.
+        </field>
+        
+        <field name="CTL11" bits="3:0">
+        control bits. 0xB
+        </field>
+    </register>
+    
+    <register address="0x0C" default_value="0x0001041C" name="REG12">
+        <field name="PHASE_RESYNC" bits="31:16">
+        P16 to P1 (Bits[DB31:DB16]) set the timeout counter for
+        activation of phase resync. This value must be set such that
+        a resync happens immediately after (and not before) the PLL
+        has achieved lock after reprogramming.
+        Calculate the timeout value using the following equation:
+        Time Out Value = Phase Resync Clock Divider/fPFD
+        When not using
+        </field>
+        <field name="RESERVED12" bits="15:4">
+        Must be set to 0x0001 
+        </field>
+        
+        <field name="CTL12" bits="3:0">
+        control bits. 0xC
+        </field>
+    </register>
+
+</register_map>
