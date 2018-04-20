@@ -1,30 +1,24 @@
-from flask import Flask, render_template
-from blinky import *
+from flask import Flask, render_template, request
+# from blinky import *
+from pysynth import adf535x
+import time
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("five_gx.html")
 
-@app.route('/cakes')
-def cakes():
-    return 'Yummy cakes'
-
-@app.route('/hello/<name>')
-def hello(name):
-    return render_template('page.html', name=name)
-
-@app.route('/blinky')
-def blinky():
-    return render_template("blinky.html")
-
-@app.route('/blinky/green')
-def blinky_green():
-    try:
-        blink_green_led()
-    except:
-        return("failure")
+@app.route('/tune_lo', methods=['GET','POST'])
+def tune_lo():
+    freq = float(request.json['freq'])
+    ad = adf535x.Adf5355()
+    ad.initialize()
+    ad.change_frequency(freq*1e6)
+    # try:
+    #     blink_green_led()
+    # except:
+    #     return("failure")
     return("success")
 
 @app.route('/blinky/red')

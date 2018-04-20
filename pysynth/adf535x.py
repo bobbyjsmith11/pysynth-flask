@@ -13,11 +13,13 @@ import os
 import platform
 import time
 from fractions import gcd
-from data_registers import data_registers
+# from data_registers import data_registers
 try:
     import control
+    import data_registers
 except:
     from .import control
+    from .import data_registers
 
 BIT_STR, OS_STR = platform.architecture()
 
@@ -33,14 +35,14 @@ THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 class Adf5355(object):
     """
     """
-    def __init__(self, spi=None):
+    def __init__(self):
         """ 
         """ 
-        if spi == None:
-                self.spi = control.Sub20Device()
-        else:
-            self.spi = spi
-        
+        # if spi == None:
+        #         self.spi = control.Sub20Device()
+        # else:
+        #     self.spi = spi
+        control.setup_lock_detect()    # configure the lock detect GPIO
         self.default_registers()
         # self.ref = 122.88e6
         self.ref = 100e6    
@@ -76,6 +78,11 @@ class Adf5355(object):
         self.reg.RDIV2.value = 0
         self.change_frequency(8.2e9)
 
+    def read_muxout(self):
+        """ return the state of the muxout
+        """
+        muxout = control.read_lock_detect()
+        return muxout
     
     def change_frequency(self, freq, ch='B'):
         """
@@ -195,7 +202,7 @@ class Adf5355(object):
             reg_data (int) - 32 bit data to write
             reg_addr (int) - register address
         """
-        self.spi.write(self.reg[reg_addr].value)
+        control.spi_write_int(self.reg[reg_addr].value)
         return
 
     def read_reg(self, reg_addr, num_bytes=3):

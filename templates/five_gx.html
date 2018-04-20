@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script type="text/javascript" src="/static/js/fgx.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="block-diagram">
+      <img src="/static/images/blk-diag.png">
+    </div>
+    <div id="controls">
+    <form>
+      <p>
+        <label for "loFreq" id="loLabel">LO Frequency (MHz):</label>
+        <input type="number" id="loFreq" value="8200">
+        <button type="button" id="btnTuneLo" class="btn btn-default" OnClick="tune_lo()">tune LO</button>
+      </p>
+      <p>
+        <label for "rfFreq" id="rfLabel">RF Frequency (MHz):</label>
+        <input type="number" id="rfFreq" value="">
+      </p>
+      <p>
+        <label for "ifFreq" id="ifLabel">IF Frequency (MHz):</label>
+        <input type="number" id="ifFreq" value="">
+      </p>
+    </form>
+    </div>
+  </body>
+</html>
