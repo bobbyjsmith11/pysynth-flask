@@ -13,9 +13,9 @@ import platform
 # from .import am3043
 # from .import control
 
-import adf535x
-import am3043
-import control
+from .import adf535x
+from .import am3043
+from .import control
 
 LO_MAX = 13.6e9
 LO_MIN = 6.8e9
@@ -48,14 +48,14 @@ class FiveGx(object):
         self.lo.initialize()
 
 
-def auto_tune(rf_freq, if_freq=None):
+def auto_tune(rf_freq):
     """
     """
-    if if_freq == None:
-        if rf_freq > IF_NOM + LO_MAX:
-            if_freq = rf_freq - LO_MAX  # change IF to get up to 18.8GHz if the filter will allow it
-        else:
-            if_freq = 3.4e9     # default IF 
+    # if if_freq == None:
+    if rf_freq > IF_NOM + LO_MAX:
+        if_freq = rf_freq - LO_MAX  # change IF to get up to 18.8GHz if the filter will allow it
+    else:
+        if_freq = 3.4e9     # default IF 
 
     sum_freq = rf_freq + if_freq
     diff_freq = rf_freq - if_freq

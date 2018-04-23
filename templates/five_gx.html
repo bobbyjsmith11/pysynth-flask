@@ -2,6 +2,7 @@
   <head>
     <script type="text/javascript" src="/static/js/fgx.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
   </head>
   <body>
     <div id="block-diagram">
@@ -10,19 +11,21 @@
     <div id="controls">
     <form>
       <p>
-        <label for "loFreq" id="loLabel">LO Frequency (MHz):</label>
-        <input type="number" id="loFreq" value="8200">
-        <button type="button" id="btnTuneLo" class="btn btn-default" OnClick="tune_lo()">tune LO</button>
+        <label for "rfFreq" id="rfLabel" >RF Frequency (GHz):</label>
+        <input type="number" id="rfFreq" onChange="rfChanged()" value="12.0">
+        <!-- input type="checkbox" id="chkAutoTune" checked>
+        <label for "chkAutoTune">follow freq plan</label -->
+        <button type="button" id="btnAuto" class="btn btn-default" OnClick="autoTune()">tune</button>
       </p>
       <p>
-        <label for "rfFreq" id="rfLabel">RF Frequency (MHz):</label>
-        <input type="number" id="rfFreq" value="">
+        <label for "ifFreq" id="ifLabel">IF Frequency (GHz):</label>
+        <input type="number" id="ifFreq" value="3.8" disabled>
       </p>
       <p>
-        <label for "ifFreq" id="ifLabel">IF Frequency (MHz):</label>
-        <input type="number" id="ifFreq" value="">
+        <label for "loFreq" id="loLabel">LO Frequency (GHz):</label>
+        <input type="number" id="loFreq" value="8.2" disabled>
+        <!-- button type="button" id="btnTuneLo" class="btn btn-default" OnClick="tune_lo()">tune LO</button -->
       </p>
     </form>
-    </div>
   </body>
 </html>

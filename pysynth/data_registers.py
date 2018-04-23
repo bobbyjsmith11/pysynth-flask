@@ -61,10 +61,10 @@ class RegisterMap(dict):
         regs = root.findall('register')
         try:
             self.name = root.attrib['name']
-        except:
-            print("no name found")
+        except Exception as e:
+            print(e)
         for reg in regs:
-            print(reg.attrib)
+            # print(reg.attrib)
             addr = eval(reg.attrib['address'])
             if 'num_bits' not in reg.keys():
                 bits = eval(root.attrib['num_bits'])
@@ -74,7 +74,7 @@ class RegisterMap(dict):
             new_reg = DataRegister(reg.attrib['name'], addr, bits, desc=reg_desc)
             fields = reg.findall('field')
             for field in fields:
-                print(field.attrib)
+                # print(field.attrib)
                 if ":" not in field.attrib['bits']:   # single bit field
                     lo_bit = int(field.attrib['bits'])
                     hi_bit = lo_bit

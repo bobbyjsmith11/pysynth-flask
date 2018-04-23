@@ -73,7 +73,7 @@ class Adf5355(object):
         addrs = list(reversed(range(13)))
         for addr in addrs:
             self.write_reg(addr)
-            print(hex(addr) + " = " + hex(self.reg[addr].value))
+            # print(hex(addr) + " = " + hex(self.reg[addr].value))
         
         self.reg.RDIV2.value = 0
         self.change_frequency(8.2e9)
