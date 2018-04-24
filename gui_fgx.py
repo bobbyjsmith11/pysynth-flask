@@ -17,6 +17,7 @@ def tune_lo():
     ad.initialize()
     ad.change_frequency(freq*1e9)
     locked = ad.read_muxout()
+    d = {}
     if locked:
         d['status_code'] = 200
     else:
