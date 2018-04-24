@@ -48,3 +48,20 @@ def find_closest_cf(freq_hz):
     fc = min(fc_lst, key=lambda x:abs(x-freq_hz/1e9))
     idx = fc_lst.index(fc)
     return idx
+
+
+def get_bit(val, offset):
+    """ return state of bit in int_type at offset
+        Parameters
+            int_type (int) - integer to be manipulated
+            offset (int) - bit offset, 0 is LSB
+        Returns True if set, False otherwise
+
+        Example Usage
+            >>> test_bit(0x09,0)
+            >>> True
+            >>> test_bit(0x08,0)
+            >>> False
+    """
+    mask = 1 << offset
+    return bool(val & mask)

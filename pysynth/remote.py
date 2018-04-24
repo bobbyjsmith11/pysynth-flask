@@ -28,3 +28,6 @@ def check_lock_detect(ip=IP_ADDR, port=PORT):
     res = requests.get('http://' + ip + ':' + port +'/check_lock_detect')
     if res.ok:
         return res.json()['locked']
+
+
+
