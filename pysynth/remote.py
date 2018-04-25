@@ -10,6 +10,8 @@ remote.py
 """
 
 import requests
+import socket
+import time
 
 IP_ADDR = '192.168.2.25'
 PORT = '5000'
@@ -30,4 +32,12 @@ def check_lock_detect(ip=IP_ADDR, port=PORT):
         return res.json()['locked']
 
 
+def capture_s2p(filename, ip_addr='192.168.2.41', port=5001):
+    vna = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    vna.connect((ip_addr, port))
+    dir = '\'C:\\Users\\bsmith\\'
 
+    # time.sleep(7)
+    cmd_str = ":MMEM:STOR " + dir + filename + '.s2p\'\n'
+    print(cmd_str)
+    vna.send(str.encode(cmd_str))
