@@ -69,7 +69,7 @@ def auto_tune():
     d['locked'] = locked
     return jsonify(d)
 
-@app.route('/set_lo_filter', method=['GET', 'POST'])
+@app.route('/set_lo_filter', methods=['GET', 'POST'])
 def set_lo_filter():
     d = {}
     flt_band = int(request.json['band'])
