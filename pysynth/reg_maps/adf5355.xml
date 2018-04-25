@@ -257,7 +257,7 @@
         </field>
     </register>
 
-    <register address="0x06" default_value="0x35012076" name="REG6">
+    <register address="0x06" default_value="0x35012036" name="REG6">
         <field name="RESERVED6" bits="31">
         Must be 0.
         </field>

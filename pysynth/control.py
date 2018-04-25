@@ -13,20 +13,18 @@ control.py
         :GPIO for PLL:
             LOCK_DETECT - pin 15
         :GPIO for RX filter:
-            A - pin 3
-            B - pin 5
-            C - pin 7
-            D - pin 8
-            E - pin 10
+            A - pin 7
+            B - pin 11
+            C - pin 13
+            D - pin 16
+            E - pin 18
         :GPIO for LO filter:
-            A - pin 29
-            B - pin 31
-            C - pin 33
-            D - pin 26
+            A - pin 27
+            B - pin 29
+            C - pin 31
+            D - pin 33
             E - pin 32
 """
-import sys
-sys.settrace
 import RPi.GPIO as IO   # calling header file for GPIO's of PI
 import spidev
 import struct
@@ -35,17 +33,17 @@ import time
 LOCK_DETECT = 15    # GPIO pin for lock detect
 
 # GPIO pins for RX filter
-RX_PINS = [3,
-           5,
-           7,
-           8,
-           10]
+RX_PINS = [7,
+           11,
+           13,
+           16,
+           18]
 
 # GPIO pins for LO filter
 LO_PINS = [29,
            31,
            33,
-           26,
+           37,
            32]
 
 
@@ -84,7 +82,18 @@ def configure_rx_filter_bits():
     """
     IO.setmode(IO.BOARD)                                        # call out by pin number
     for pin in RX_PINS:
-        IO.setup(pin, IO.OUT, pull_up_down=IO.PUD_DOWN)      # setting lock detect pin as input with a pull down
+        # print(pin)
+        IO.setup(pin, IO.OUT)                           # set the GPIO pins as outputs
+
+def set_rx_filter(val):
+    """
+    sets the AM3043 LO filter to the appropriate band
+    """
+    for i in range(len(RX_PINS)):
+        mask = 1 << i
+        io_state = int(bool(val & mask))
+        IO.output(RX_PINS[i], io_state) 
+        # print("LO[" + str(i) + " - pin "+ str(LO_PINS[i]) + "] = " + str(bool(val & mask)))
 
 def configure_lo_filter_bits():
     """ 
@@ -92,7 +101,8 @@ def configure_lo_filter_bits():
     """
     IO.setmode(IO.BOARD)                                        # call out by pin number
     for pin in LO_PINS:
-        IO.setup(pin, IO.OUT, pull_up_down=IO.PUD_DOWN)      # setting lock detect pin as input with a pull down
+        # print(pin)
+        IO.setup(pin, IO.OUT)                           # set the GPIO pins as outputs
 
 def set_lo_filter(val):
     """
@@ -100,7 +110,9 @@ def set_lo_filter(val):
     """
     for i in range(len(LO_PINS)):
         mask = 1 << i
-        print("LO[" + str(i) + "] = " + str(bool(val & mask)))
+        io_state = int(bool(val & mask))
+        IO.output(LO_PINS[i], io_state) 
+        # print("LO[" + str(i) + " - pin "+ str(LO_PINS[i]) + "] = " + str(bool(val & mask)))
 
 if __name__ == '__main__':
     

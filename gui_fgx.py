@@ -47,8 +47,8 @@ def auto_tune():
 
     try:
         lo_freq, if_freq = five_gx.auto_tune(rf_freq*1e9)
-        print(lo_freq)
-        print(if_freq)
+        # print(lo_freq)
+        # print(if_freq)
     except Exception as e:
         print(e)
         d['status_code'] = 400
@@ -63,7 +63,7 @@ def auto_tune():
     ad.change_frequency(lo_freq)
     time.sleep(0.1)                 # give time to settle
     locked = ad.read_muxout()
-    print("locked = " + str(locked))
+    # print("locked = " + str(locked))
     d['status_code'] = 200
     d['locked'] = locked
     return jsonify(d)
