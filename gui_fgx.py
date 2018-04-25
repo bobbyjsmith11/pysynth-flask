@@ -74,7 +74,7 @@ def set_lo_filter():
     d = {}
     flt_band = int(request.json['band'])
     try:
-        control.set_lo_filter(band)
+        control.set_lo_filter(flt_band)
     except Exception as e:
         print(e)
         d['status_code'] = 400
