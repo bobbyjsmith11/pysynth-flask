@@ -41,3 +41,13 @@ def capture_s2p(filename, ip_addr='192.168.2.41', port=5001):
     cmd_str = ":MMEM:STOR " + dir + filename + '.s2p\'\n'
     print(cmd_str)
     vna.send(str.encode(cmd_str))
+
+def set_lo_filter(band, ip=IP_ADDR, port=PORT):
+    """
+    """
+    dat = {'band': band} 
+    res = requests.get('http://' + ip + ':' + port +'/set_lo_filter', json=dat)
+    if res.json()['status_code'] == 200:
+        return res.json()
+    else:
+        raise Exception('set_lo_filter to ' + str(band) + ' Hz unsuccessful')
