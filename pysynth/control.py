@@ -108,6 +108,7 @@ def set_lo_filter(val):
     """
     sets the AM3043 LO filter to the appropriate band
     """
+    configure_lo_filter_bits()
     for i in range(len(LO_PINS)):
         mask = 1 << i
         io_state = int(bool(val & mask))
