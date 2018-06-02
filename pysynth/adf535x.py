@@ -105,6 +105,12 @@ class Adf5355(object):
                     where:
                     fchsp is the desired channel spacing frequency
         """
+        # if ch == 'A':
+        #     self.reg.RF_OUT_A.value = 1
+        # else:
+        #     self.reg.RF_OUT_A.value = 0
+        # self.write_reg(0x06)
+
         if self.fpfd > 75e6:
             R_orig = self.reg.R.value
             self.reg.R.value = R_orig*2
@@ -225,6 +231,48 @@ class Adf5355(object):
             fo.close()
         return
 
+    def load_from_file(self, fo):
+        d = load_registers_from_file(fo)
+        addrs = sorted(d.keys())
+        addrs.reverse()
+        for addr in addrs:
+            print("%x = %x" % (addr, d[addr]))
+            self.reg[addr].value = d[addr]
+            self.write_reg(addr)
+
+class Adf5356(Adf5355):
+    """
+    """
+    def __init__(self):
+        """ 
+        """ 
+        # if spi == None:
+        #         self.spi = control.Sub20Device()
+        # else:
+        #     self.spi = spi
+        control.setup_lock_detect()    # configure the lock detect GPIO
+        self.default_registers()
+        self.ref = 122.88e6
+
+    def set_100M(self):
+        """ set for RFoutA to 100 MHz
+        """
+        self.load_from_file('reg_maps/ADF5356_100M.txt')
+
+    def default_registers(self):
+        """ load the default register set
+        """
+        self.reg = data_registers.RegisterMap(THIS_DIR + "/reg_maps/adf5356.xml")
+
+    def initialize(self):
+        # self.hard_code_registers()
+        addrs = list(reversed(range(14)))       # ADF5356 has an extra regsiter
+        for addr in addrs:
+            self.write_reg(addr)
+            # print(hex(addr) + " = " + hex(self.reg[addr].value))
+        
+        self.reg.RDIV2.value = 0
+        self.change_frequency(8.2e9)
 
 #########################################################
 #       SHARED METHODS
@@ -238,3 +286,22 @@ def get_vco_div(freq):
         if (freq <= VCO_MAX/div) and (freq > VCO_MIN/div):
             return i
     raise ValueError(str(freq) + " outside of valid range")
+
+
+def load_registers_from_file(fo):
+    """ 
+    load registers from a text file output from the Analog Devices tool
+    return a dict where the keys are the register addresses and the
+    values are the register values
+    """
+    d = {}
+    if isinstance(fo, str):
+        fo = open(fo)
+    for line in fo.readlines():
+        s = line.split(":")
+        addr = int(s[0].split('R')[1])
+        val = eval(s[1].strip())
+        # print("%s : %s" % (addr, val))
+        d[addr] = val
+    return d
+
