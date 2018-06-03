@@ -1,10 +1,111 @@
 <?xml version="1.0"?>
 <register_map name="HMC7044" num_bits="8">
-  <register address="0x00" default_value="0x00" name="GLOBAL_SOFT_RESET">
+
+  <register address="0x00" default_value="0x00" name="REG_GLOB_SRESET">
     <field name="RESERVED0" bits="7:1">
         Reserved
     </field>
     <field name="SOFT_RESET" bits="0">
     </field>
   </register>
+
+  <register address="0x01" default_value="0x00" name="REG_GLOB_REQ_MODE_1">
+    <field name="RESEED_REQ" bits="7">
+    </field>
+    <field name="HIGH_PERF_DIST_PATH" bits="6">
+    </field>
+    <field name="HIGH_PERF_PLLS_VCO" bits="5">
+    </field>
+    <field name="FORCE_HOLDOVER" bits="4">
+    </field>
+    <field name="MUTE_OUTPUT_DRIVERS" bits="3">
+    </field>
+    <field name="PULSE_GEN_REQ" bits="2">
+    </field>
+    <field name="RESTART_DIVS" bits="1">
+    </field>
+    <field name="SLEEP_MODE" bits="0">
+    </field>
+  </register>
+
+  <register address="0x02" default_value="0x00" name="REG_GLOB_REQ_MODE_2">
+    <field name="RESERVED_0X2" bits="7:3">
+    </field>
+    <field name="PLL2_AUTOTUNE_TRIG" bits="2">
+    </field>
+    <field name="SLIP_REQ" bits="1">
+    </field>
+    <field name="RESERVED_0X2_1" bits="0">
+    </field>
+  </register>
+
+  <register address="0x03" default_value="0x37" name="REG_GLOB_ENABLE_1">
+    <field name="RESERVED_0X3" bits="7:6">
+    </field>
+    <field name="RF_RESEEDER_EN" bits="5">
+    </field>
+    <field name="VCO_SEL" bits="4:3">
+    </field>
+    <field name="SYSREF_TIMER_EN" bits="2">
+    </field>
+    <field name="PLL2_EN" bits="1">
+    </field>
+    <field name="PLL1_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x04" default_value="0x7F" name="REG_GLOB_ENABLE_2">
+    <field name="RESERVED_0X3" bits="7">
+    </field>
+    <field name="EN_CH12_CH13" bits="6">
+    </field>
+    <field name="EN_CH10_CH11" bits="5">
+    </field>
+    <field name="EN_CH8_CH9" bits="4">
+    </field>
+    <field name="EN_CH6_CH7" bits="3">
+    </field>
+    <field name="EN_CH4_CH5" bits="2">
+    </field>
+    <field name="EN_CH2_CH3" bits="1">
+    </field>
+    <field name="EN_CH0_CH1" bits="0">
+    </field>
+  </register>
+
+  <register address="0x05" default_value="0x4F" name="REG_GLOB_MODE_EN">
+    <field name="SYNC_PIN_MODE" bits="7:6">
+    </field>
+    <field name="CLKIN1_EXT_VCO_IN_MODE" bits="5">
+    </field>
+    <field name="CLKIN0_RF_SYNC_IN_MODE" bits="4">
+    </field>
+    <field name="PLL1_REF_PATH_EN" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x06" default_value="0x00" name="REG_GLOB_CLEAR_ALARMS">
+    <field name="RESERVED_0X6" bits="7:1">
+    </field>
+    <field name="CLEAR_ALARMS" bits="0">
+    </field>
+  </register>
+
+  <register address="0x07" default_value="0x00" name="REG_RESERVED_0X7">
+    <field name="RESERVED_0X7" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x08" default_value="0x00" name="REG_SCRATCHPAD">
+    <field name="SCRATCHPAD" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x09" default_value="0x01" name="REG_GLOB_MISC">
+    <field name="RESERVED_0X9" bits="7:1">
+    </field>
+    <field name="DISABLE_SYNC_AT_LOCK" bits="0">
+    </field>
+  </register>
+
 </register_map>
