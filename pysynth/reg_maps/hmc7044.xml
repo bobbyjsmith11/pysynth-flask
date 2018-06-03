@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<register_map name="HMC7044" num_bits="8">
+  <register address="0x00" default_value="0x00" name="GLOBAL_SOFT_RESET">
+    <field name="RESERVED0" bits="7:1">
+        Reserved
+    </field>
+    <field name="SOFT_RESET" bits="0">
+    </field>
+  </register>
+</register_map>
