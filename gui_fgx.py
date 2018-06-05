@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 # from blinky import *
 from pysynth import adf535x
 from pysynth import five_gx
-from pysynth import control
+# from pysynth import control
 import time
 
 app = Flask(__name__)
@@ -69,19 +69,19 @@ def auto_tune():
     d['locked'] = locked
     return jsonify(d)
 
-@app.route('/set_lo_filter', methods=['GET', 'POST'])
-def set_lo_filter():
-    d = {}
-    flt_band = int(request.json['band'])
-    try:
-        control.set_lo_filter(flt_band)
-    except Exception as e:
-        print(e)
-        d['status_code'] = 400
-        d['error'] = e
-        return jsonify(d)
-    d['status_code'] = 200
-    return jsonify(d)
+# @app.route('/set_lo_filter', methods=['GET', 'POST'])
+# def set_lo_filter():
+#     d = {}
+#     flt_band = int(request.json['band'])
+#     try:
+#         control.set_lo_filter(flt_band)
+#     except Exception as e:
+#         print(e)
+#         d['status_code'] = 400
+#         d['error'] = e
+#         return jsonify(d)
+#     d['status_code'] = 200
+#     return jsonify(d)
 
 
 if __name__ == '__main__':

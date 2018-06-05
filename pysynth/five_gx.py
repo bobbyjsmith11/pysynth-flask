@@ -15,7 +15,7 @@ import platform
 
 from .import adf535x
 from .import am3043
-from .import control
+# from .import control
 
 LO_MAX = 13.6e9
 LO_MIN = 6.8e9
@@ -28,8 +28,9 @@ class FiveGx(object):
     """
     """
     def __init__(self):
-        self.spi = control.Sub20Device()
-        self.lo = adf535x.Adf5355(spi=self.spi)
+        # self.spi = control.Sub20Device()
+        # self.lo = adf535x.Adf5355(spi=self.spi)
+        self.lo = adf535x.Adf5355()
     
 
     @property

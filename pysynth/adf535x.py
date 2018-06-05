@@ -44,7 +44,7 @@ class Adf5355(object):
         # else:
         #     self.spi = spi
         
-        control.setup_lock_detect()    # configure the lock detect GPIO
+        # control.setup_lock_detect()    # configure the lock detect GPIO
         
         self.spi = Cp2130SpiDevice()
         self.default_registers()
@@ -85,8 +85,9 @@ class Adf5355(object):
     def read_muxout(self):
         """ return the state of the muxout
         """
-        muxout = control.read_lock_detect()
-        return muxout
+        raise Exception("read_muxout not implemented at this time")
+        # muxout = control.read_lock_detect()
+        # return muxout
     
     def change_frequency(self, freq, ch='B'):
         """
@@ -212,7 +213,8 @@ class Adf5355(object):
             reg_data (int) - 32 bit data to write
             reg_addr (int) - register address
         """
-        control.spi_write_int(self.reg[reg_addr].value)
+        # control.spi_write_int(self.reg[reg_addr].value)
+        self.spi.write_int(self.reg[reg_addr].value)
         return
 
     def read_reg(self, reg_addr, num_bytes=3):

@@ -4,12 +4,12 @@
 control.py
 ----------
     :Description:
-        Uses the SPI and GPIO from the raspberry pi to control the synthesizer and filters
+        Uses the cp2130 to control 5Gx
     :Pinout:
         :SPI (uses spidev0):
-            SCLK - pin 23
-            MOSI - pin 19
-            CS_N - pin 24
+            SCLK - 
+            MOSI - 
+            CS_N - uses CS1
         :GPIO for PLL:
             LOCK_DETECT - pin 15
         :GPIO for RX filter:
@@ -25,8 +25,8 @@ control.py
             D - pin 33
             E - pin 32
 """
-import RPi.GPIO as IO   # calling header file for GPIO's of PI
-import spidev
+import cp2130
+from cp2130.data import *
 import struct
 import time
 
@@ -47,6 +47,23 @@ LO_PINS = [29,
            32]
 
 
+class Cp2130SpiDevice(object):
+    """
+    """
+    def __init__(self):
+        self.chip = cp2130.find()
+        time.sleep(0.1)
+        self.chip.channel1.clock_frequency = 500000
+
+    def write_int(self, val):
+        b = struct.pack('>I', val)
+        ret = self.chip.channel1.write(b)
+        return ret
+
+    def get_otp_pin_settings(self):
+        pins = self.chip.pin_config
+        pins.gpio3.function = GPIO3Mode.CS3_n 
+        return pins
 
 def spi_write_int(dat_int, bus=0, dev=0, clock=7629):
     """ write an integer (4 bytes) to the spi device
@@ -114,6 +131,8 @@ def set_lo_filter(val):
         io_state = int(bool(val & mask))
         IO.output(LO_PINS[i], io_state) 
         # print("LO[" + str(i) + " - pin "+ str(LO_PINS[i]) + "] = " + str(bool(val & mask)))
+
+
 
 if __name__ == '__main__':
     
