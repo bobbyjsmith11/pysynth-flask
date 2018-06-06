@@ -25,8 +25,11 @@ control.py
             D - pin 33
             E - pin 32
 """
-import cp2130
-from cp2130.data import *
+# import cp2130
+# from cp2130.data import *
+from sub20.sub_api_wrapper import *
+from sub20.sub_flags import *
+
 import struct
 import time
 
@@ -47,23 +50,45 @@ LO_PINS = [29,
            32]
 
 
-class Cp2130SpiDevice(object):
+class Sub20Device(object):
     """
     """
     def __init__(self):
-        self.chip = cp2130.find()
-        time.sleep(0.1)
-        self.chip.channel1.clock_frequency = 500000
+        self.hdl = sub_open()
+        sub_set_spi_config(self.hdl,
+                           SPI_ENABLE |\
+                           SPI_CPOL_RISE |\
+                           SPI_SMPL_SETUP |\
+                           SPI_MSB_FIRST |\
+                           SPI_CLK_125KHz
+                            )
 
     def write_int(self, val):
         b = struct.pack('>I', val)
-        ret = self.chip.channel1.write(b)
+        ret = sub_spi_transfer_ess( self.hdl, b, ess_str=0)
         return ret
 
-    def get_otp_pin_settings(self):
-        pins = self.chip.pin_config
-        pins.gpio3.function = GPIO3Mode.CS3_n 
-        return pins
+
+# class Cp2130SpiDevice(object):
+#     """
+#     """
+#     def __init__(self):
+#         self.chip = cp2130.find()
+#         time.sleep(0.1)
+#         self.chip.channel1.clock_frequency = 500000
+# 
+#     def write_int(self, val):
+#         b = struct.pack('>I', val)
+#         ret = self.chip.channel1.write(b)
+#         return ret
+# 
+#     def get_otp_pin_settings(self):
+#         pins = self.chip.pin_config
+#         pins.gpio3.function = GPIO3Mode.CS3_n 
+#         pins.gpio4.function = GPIO4Mode.CS4_n 
+#         pins.gpio5.function = GPIO5Mode.CS5_n 
+#         pins.gpio6.function = GPIO6Mode.CS6_n 
+#         return pins
 
 def spi_write_int(dat_int, bus=0, dev=0, clock=7629):
     """ write an integer (4 bytes) to the spi device
