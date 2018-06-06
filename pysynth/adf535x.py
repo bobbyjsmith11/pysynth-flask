@@ -8,7 +8,6 @@ adf535x.py
     For manipulating the registers in the ADF535x PLL ICs from ADI
 
 """
-import cp2130
 import os
 import platform
 import time
@@ -16,10 +15,10 @@ import struct
 from fractions import gcd
 # from data_registers import data_registers
 try:
-    # import control
+    import control
     import data_registers
 except:
-    # from .import control
+    from .import control
     from .import data_registers
 
 BIT_STR, OS_STR = platform.architecture()
@@ -46,7 +45,7 @@ class Adf5355(object):
         
         # control.setup_lock_detect()    # configure the lock detect GPIO
         
-        self.spi = Cp2130SpiDevice()
+        self.spi = control.Cp2130SpiDevice()
         self.default_registers()
         # self.ref = 122.88e6
         self.ref = 100e6    
@@ -74,6 +73,7 @@ class Adf5355(object):
 
     def initialize(self):
         # self.hard_code_registers()
+        self.spi.reset_pll()
         addrs = list(reversed(range(13)))
         for addr in addrs:
             self.write_reg(addr)
@@ -82,9 +82,11 @@ class Adf5355(object):
         self.reg.RDIV2.value = 0
         self.change_frequency(8.2e9)
 
+
     def read_muxout(self):
         """ return the state of the muxout
         """
+
         raise Exception("read_muxout not implemented at this time")
         # muxout = control.read_lock_detect()
         # return muxout
@@ -155,6 +157,8 @@ class Adf5355(object):
             self.write_reg(0x04)
             self.reg.AUTOCAL.value = 1
             self.write_reg(0x00)
+
+        self.spi.set_lock_detect_led(self.spi.read_lock_detect())
 
     def calc_registers(self, freq, ch='B'):
         """
@@ -290,19 +294,6 @@ class Adf5356(Adf5355):
         """
         self.spi.write_int(self.reg[reg_addr].value)
         return
-
-class Cp2130SpiDevice(object):
-    """
-    """
-    def __init__(self):
-        self.dev = cp2130.find()
-        time.sleep(0.1)
-        self.dev.channel1.clock_frequency = 500000
-
-    def write_int(self, val):
-        b = struct.pack('>I', val)
-        ret = self.dev.channel1.write(b)
-        return ret
 
 #########################################################
 #       SHARED METHODS
