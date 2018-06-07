@@ -15,11 +15,9 @@ import struct
 from fractions import gcd
 # from data_registers import data_registers
 try:
-    import control
     import data_registers
 except:
     from .import control
-    from .import data_registers
 
 BIT_STR, OS_STR = platform.architecture()
 
@@ -35,9 +33,21 @@ THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 class Adf5355(object):
     """
     """
-    def __init__(self):
+    def __init__(self, ctl='cp2130'):
         """ 
-        """ 
+        """
+        if ctl == 'cp2130':
+            try:
+                import control
+            except:
+                from .import control
+            self.spi = control.Cp2130SpiDevice()
+        else:
+            try:
+                import control_rpi
+            except:
+                from .import control_rpi
+            self.spi = control_rpi.RpiControl()
         # if spi == None:
         #         self.spi = control.Sub20Device()
         # else:
@@ -45,7 +55,7 @@ class Adf5355(object):
         
         # control.setup_lock_detect()    # configure the lock detect GPIO
         
-        self.spi = control.Cp2130SpiDevice()
+        # self.spi = control.Cp2130SpiDevice()
         self.default_registers()
         # self.ref = 122.88e6
         self.ref = 100e6    
@@ -253,7 +263,7 @@ class Adf5355(object):
 class Adf5356(Adf5355):
     """
     """
-    def __init__(self):
+    def __init__(self, ctl='cp2130'):
         """ 
         """ 
         # if spi == None:
@@ -261,7 +271,19 @@ class Adf5356(Adf5355):
         # else:
         #     self.spi = spi
         # control.setup_lock_detect()    # configure the lock detect GPIO
-        self.spi = Cp2130SpiDevice()
+        if ctl == 'cp2130':
+            try:
+                import control
+            except:
+                from .import control
+            self.spi = control.Cp2130SpiDevice()
+        else:
+            try:
+                import control_rpi
+            except:
+                from .import control_rpi
+            self.spi = control_rpi.RpiControl()
+        # self.spi = Cp2130SpiDevice()
         self.default_registers()
         self.ref = 122.88e6
 
