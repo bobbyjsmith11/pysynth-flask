@@ -54,6 +54,17 @@ class Cp2130SpiDevice(object):
         self.chip = cp2130.find()
         time.sleep(0.1)
         self.chip.channel0.clock_frequency = 500000
+        self.chip.channel1.clock_frequency = 500000
+
+    def set_attenuator(self, val):
+        """ set the HMC1018 attenuator
+        :Args: 
+            :val (int): from 0 to 31
+        """
+        val = ~val & 0x1F       # one's complement
+        b = struct.pack('>B', val)
+        ret = self.chip.channel1.write(b)
+        return ret
 
     def write_int(self, val):
         b = struct.pack('>I', val)
@@ -62,6 +73,7 @@ class Cp2130SpiDevice(object):
 
     def reset_pll(self):
         self.disable_pll()
+        time.sleep(0.1)
         self.enable_pll()
 
     def disable_pll(self):
@@ -73,7 +85,7 @@ class Cp2130SpiDevice(object):
         self.set_lock_detect_led(self.read_lock_detect())
 
     def read_lock_detect(self):
-        return(self.get_gpio(2))
+        return(self.get_gpio(3))
 
     def set_lock_detect_led(self, state):
         """ set the lock detect LED (D6)on the CP2130-EK to 

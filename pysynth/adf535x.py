@@ -84,6 +84,7 @@ class Adf5355(object):
     def initialize(self):
         # self.hard_code_registers()
         self.spi.reset_pll()
+        
         addrs = list(reversed(range(13)))
         for addr in addrs:
             self.write_reg(addr)
@@ -96,11 +97,22 @@ class Adf5355(object):
     def read_muxout(self):
         """ return the state of the muxout
         """
+        return self.spi.read_lock_detect()
 
-        raise Exception("read_muxout not implemented at this time")
-        # muxout = control.read_lock_detect()
-        # return muxout
-    
+    def enable_rfout_a(self):
+        self.reg.RF_OUT_A.value = 1
+        self.write_reg(0x06)
+    def disable_rfout_a(self):
+        self.reg.RF_OUT_A.value = 0
+        self.write_reg(0x06)
+
+    def enable_rfout_b(self):
+        self.reg.RF_OUT_B.value = 1
+        self.write_reg(0x06)
+    def disable_rfout_b(self):
+        self.reg.RF_OUT_B.value = 0
+        self.write_reg(0x06)
+
     def change_frequency(self, freq, ch='B'):
         """
         --------------------
@@ -122,11 +134,12 @@ class Adf5355(object):
                     where:
                     fchsp is the desired channel spacing frequency
         """
-        # if ch == 'A':
-        #     self.reg.RF_OUT_A.value = 1
-        # else:
-        #     self.reg.RF_OUT_A.value = 0
-        # self.write_reg(0x06)
+        if ch == 'A':
+            self.enable_rfout_a()
+            self.disable_rfout_b()
+        else:
+            self.disable_rfout_a()
+            self.enable_rfout_b()
 
         if self.fpfd > 75e6:
             R_orig = self.reg.R.value
@@ -167,7 +180,7 @@ class Adf5355(object):
             self.write_reg(0x04)
             self.reg.AUTOCAL.value = 1
             self.write_reg(0x00)
-
+        time.sleep(0.1)
         self.spi.set_lock_detect_led(self.spi.read_lock_detect())
 
     def calc_registers(self, freq, ch='B'):
