@@ -8,7 +8,7 @@ adf535x.py
     For manipulating the registers in the ADF535x PLL ICs from ADI
 
 """
-import cp2130
+# import cp2130
 import os
 import platform
 import time
@@ -16,10 +16,10 @@ import struct
 from fractions import gcd
 # from data_registers import data_registers
 try:
-    # import control
+    import control
     import data_registers
 except:
-    # from .import control
+    from .import control
     from .import data_registers
 
 BIT_STR, OS_STR = platform.architecture()
@@ -254,8 +254,8 @@ class Adf5356(Adf5355):
         #         self.spi = control.Sub20Device()
         # else:
         #     self.spi = spi
-        # control.setup_lock_detect()    # configure the lock detect GPIO
-        self.spi = Cp2130SpiDevice()
+        control.setup_lock_detect()    # configure the lock detect GPIO
+        # self.spi = Cp2130SpiDevice()
         self.default_registers()
         self.ref = 122.88e6
 
@@ -286,21 +286,22 @@ class Adf5356(Adf5355):
             reg_data (int) - 32 bit data to write
             reg_addr (int) - register address
         """
-        self.spi.write_int(self.reg[reg_addr].value)
+        # self.spi.write_int(self.reg[reg_addr].value)
+        control.spi_write_int(self.reg[reg_addr].value)
         return
 
-class Cp2130SpiDevice(object):
-    """
-    """
-    def __init__(self):
-        self.dev = cp2130.find()
-        time.sleep(0.1)
-        self.dev.channel1.clock_frequency = 500000
-
-    def write_int(self, val):
-        b = struct.pack('>I', val)
-        ret = self.dev.channel1.write(b)
-        return ret
+# class Cp2130SpiDevice(object):
+#     """
+#     """
+#     def __init__(self):
+#         self.dev = cp2130.find()
+#         time.sleep(0.1)
+#         self.dev.channel1.clock_frequency = 500000
+# 
+#     def write_int(self, val):
+#         b = struct.pack('>I', val)
+#         ret = self.dev.channel1.write(b)
+#         return ret
 
 #########################################################
 #       SHARED METHODS
