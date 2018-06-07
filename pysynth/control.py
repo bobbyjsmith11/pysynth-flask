@@ -32,6 +32,7 @@ import struct
 import time
 
 LOCK_DETECT = 15    # GPIO pin for lock detect
+PLL_RESET = 13      # CE on ADF5356
 
 # GPIO pins for RX filter
 RX_PINS = [7,
@@ -47,7 +48,20 @@ LO_PINS = [29,
            37,
            32]
 
+def configure_all():
+    setup_lock_detect()
+    # configure_rx_filter_bits()
+    setup_pll_reset()
 
+def reset_pll():
+    disable_pll()
+    enable_pll()
+
+def disable_pll():
+    IO.output(PLL_RESET, 0)
+
+def enable_pll():
+    IO.output(PLL_RESET, 1)
 
 def spi_write_int(dat_int, bus=0, dev=0, clock=7629):
     """ write an integer (4 bytes) to the spi device
@@ -60,6 +74,12 @@ def spi_write_int(dat_int, bus=0, dev=0, clock=7629):
     spi.max_speed_hz = clock
     spi.writebytes(lst)
     spi.close()
+
+def setup_pll_reset():
+    """ 
+    """
+    IO.setmode(IO.BOARD)                                        # call out by pin number
+    IO.setup(PLL_RESET, IO.OUT)
 
 def setup_lock_detect():
     """ 

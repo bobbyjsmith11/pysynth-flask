@@ -271,6 +271,7 @@ class Adf5356(Adf5355):
 
     def initialize(self):
         # self.hard_code_registers()
+        control.reset_pll()
         addrs = list(reversed(range(14)))       # ADF5356 has an extra regsiter
         for addr in addrs:
             self.write_reg(addr)
