@@ -10,6 +10,7 @@ control.py
             SCLK - pin 23
             MOSI - pin 19
             CS_N - pin 24
+            CE   - pin 
         :GPIO for PLL:
             LOCK_DETECT - pin 15
         :GPIO for RX filter:
