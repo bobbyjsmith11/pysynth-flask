@@ -107,10 +107,10 @@ class Adf5355(object):
         self.write_reg(0x06)
 
     def enable_rfout_b(self):
-        self.reg.RF_OUT_B.value = 1
+        self.reg.RF_OUT_B.value = 0
         self.write_reg(0x06)
     def disable_rfout_b(self):
-        self.reg.RF_OUT_B.value = 0
+        self.reg.RF_OUT_B.value = 1
         self.write_reg(0x06)
 
     def change_frequency(self, freq, ch='B'):
