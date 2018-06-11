@@ -55,7 +55,7 @@
   </register>
 
   <register address="0x04" default_value="0x7F" name="REG_GLOB_ENABLE_2">
-    <field name="RESERVED_0X3" bits="7">
+    <field name="RESERVED_0X4" bits="7">
     </field>
     <field name="EN_CH12_CH13" bits="6">
     </field>
@@ -108,4 +108,1992 @@
     </field>
   </register>
 
+  <register address="0x0A" default_value="0x07" name="REG_CLKIN0_CTRL">
+    <field name="RESERVED_0XA" bits="7:5">
+    </field>
+    <field name="CLKIN0_INPUT_BUF_MODE" bits="4:1">
+    </field>
+    <field name="CLKIN0_BUF_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x0B" default_value="0x07" name="REG_CLKIN1_CTRL">
+    <field name="RESERVED_0XB" bits="7:5">
+    </field>
+    <field name="CLKIN1_INPUT_BUF_MODE" bits="4:1">
+    </field>
+    <field name="CLKIN1_BUF_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x0C" default_value="0x07" name="REG_CLKIN2_CTRL">
+    <field name="RESERVED_0XC" bits="7:5">
+    </field>
+    <field name="CLKIN2_INPUT_BUF_MODE" bits="4:1">
+    </field>
+    <field name="CLKIN2_BUF_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x0D" default_value="0x07" name="REG_CLKIN3_CTRL">
+    <field name="RESERVED_0XD" bits="7:5">
+    </field>
+    <field name="CLKIN3_INPUT_BUF_MODE" bits="4:1">
+    </field>
+    <field name="CLKIN3_BUF_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x0E" default_value="0x07" name="REG_OSCIN_CTRL">
+    <field name="RESERVED_0XE" bits="7:5">
+    </field>
+    <field name="OSCIN_INPUT_BUF_MODE" bits="4:1">
+    </field>
+    <field name="OSCIN_BUF_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x14" default_value="0xE4" name="REG_PLL1_REF_PRIORITY">
+    <field name="CLKIN_FOURTH_PRIORITY" bits="7:6">
+    </field>
+    <field name="CLKIN_THIRD_PRIORITY" bits="5:4">
+    </field>
+    <field name="CLKIN_SECOND_PRIORITY" bits="3:2">
+    </field>
+    <field name="CLKIN_FIRST_PRIORITY" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x15" default_value="0x03" name="REG_PLL1_LOS_CTRL">
+    <field name="RESERVED_0X15" bits="7:3">
+    </field>
+    <field name="LOS_VALID_TIMER" bits="2:0">
+    </field>
+  </register>
+
+  <register address="0x16" default_value="0x0C" name="REG_PLL1_HOLDOVER_EXIT_CTRL">
+    <field name="RESERVED_0X16" bits="7:4">
+    </field>
+    <field name="HOLDOVER_EXIT_ACTION" bits="3:2">
+    </field>
+    <field name="HOLDOVER_EXIT_CRITERIA" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x17" default_value="0x00" name="REG_PLL1_HOLDOVER_DACADC_CTRL_1">
+    <field name="RESERVED_0X17" bits="7">
+    </field>
+    <field name="HOLDOVER_DAC_VALUE" bits="6:0">
+    </field>
+  </register>
+
+  <register address="0x18" default_value="0x04" name="REG_PLL1_HOLDOVER_DACADC_CTRL_2">
+    <field name="RESERVED_0X18" bits="7:4">
+    </field>
+    <field name="ADC_TRACKING_DISABLE" bits="3">
+    </field>
+    <field name="FORCE_DAC_HOLDOVER_QUICK_MODE" bits="2">
+    </field>
+    <field name="HOLDOVER_BW_REDUCTION" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x19" default_value="0x00" name="REG_PLL1_LOS_MODE_CTRL">
+    <field name="RESERVED_0X19" bits="7:2">
+    </field>
+    <field name="LOS_BYPASS_INPUT_PRESCALER" bits="1">
+    </field>
+    <field name="LOS_USE_VCXO_PRESCALER" bits="0">
+    </field>
+  </register>
+
+  <register address="0x1A" default_value="0x08" name="REG_PLL1_CP_CTRL">
+    <field name="RESERVED_0X1A" bits="7:4">
+    </field>
+    <field name="PLL1_CP_CURRENT" bits="3:0">
+    </field>
+  </register>
+  
+  <register address="0x1B" default_value="0x18" name="REG_PLL1_PFD_CTRL">
+    <field name="RESERVED_0X1B" bits="7:5">
+    </field>
+    <field name="PLL1_PFD_UP_EN" bits="4">
+    </field>
+    <field name="PLL1_PFD_DN_EN" bits="3">
+    </field>
+    <field name="PLL1_PFD_UP_FORCE" bits="2">
+    </field>
+    <field name="PLL1_PFD_DN_FORCE" bits="1">
+    </field>
+    <field name="PLL1_PFD_POLARITY" bits="0">
+    </field>
+  </register>
+
+  <register address="0x1C" default_value="0x04" name="REG_CLKIN0_PRESCALER_CTRL">
+    <field name="CLKIN0_PRESCALER" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x1D" default_value="0x01" name="REG_CLKIN1_PRESCALER_CTRL">
+    <field name="CLKIN1_PRESCALER" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x1E" default_value="0x04" name="REG_CLKIN2_PRESCALER_CTRL">
+    <field name="CLKIN2_PRESCALER" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x1F" default_value="0x01" name="REG_CLKIN3_PRESCALER_CTRL">
+    <field name="CLKIN3_PRESCALER" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x20" default_value="0x04" name="REG_OSCIN_PRESCALER_CTRL">
+    <field name="OSCIN_PRESCALER" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x21" default_value="0x04" name="REG_PLL1_REF_DIV_LSB">
+    <field name="R1_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x22" default_value="0x00" name="REG_PLL1_REF_DIV_MSB">
+    <field name="R1_15_8_MSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x26" default_value="0x10" name="REG_PLL1_N1_DIV_LSB">
+    <field name="N1_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x27" default_value="0x00" name="REG_PLL1_N1_DIV_MSB">
+    <field name="N1_15_8_MSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x28" default_value="0x0F" name="REG_PLL1_LOCK_DET_CTRL">
+    <field name="RESERVED_0X28" bits="7:6">
+    </field>
+    <field name="PLL1_LOCK_DET_USES_SLIP" bits="5">
+    </field>
+    <field name="PLL1_LOCK_DET_TIMER" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0x29" default_value="0x05" name="REG_PLL1_REF_SWITCVH_CTRL">
+    <field name="RESERVED_0X29" bits="7:6">
+    </field>
+    <field name="BYPASS_DEBOUNCE" bits="5">
+    </field>
+    <field name="MANUAL_MODE_REF_SWITCHING" bits="4:3">
+    </field>
+    <field name="HOLDOVER_USES_DAC" bits="2">
+    </field>
+    <field name="AUTO_REVERTIVE_REF_SWITCHING" bits="1">
+    </field>
+    <field name="AUTO_MODE_REF_SWITCHING" bits="0">
+    </field>
+  </register>
+
+  <register address="0x2A" default_value="0x00" name="REG_PLL1_HOLDOFF_TIME_CTRL">
+    <field name="HOLDOFF_TIMER" bits="7:0">
+    </field>
+  </register>
+
+
+  <register address="0x31" default_value="0x01" name="REG_PLL2_MISC_CTRL">
+    <field name="RESERVED_0X31" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x32" default_value="0x01" name="REG_PLL2_FREQ_DBLR_CTRL">
+    <field name="RESERVED_0X32" bits="7:1">
+    </field>
+    <field name="BYPASS_FREQ_DOUBLER" bits="0">
+    </field>
+  </register>
+
+  <register address="0x33" default_value="0x02" name="REG_PLL2_REF_DIV_LSB">
+    <field name="R2_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x34" default_value="0x00" name="REG_PLL2_REF_DIV_MSB">
+    <field name="RESERVED_0X34" bits="7:4">
+    </field>
+    <field name="R2_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x35" default_value="0x20" name="REG_PLL2_N2_DIV_LSB">
+    <field name="N2_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x36" default_value="0x00" name="REG_PLL2_N2_DIV_MSB">
+    <field name="N2_15_8_MSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x37" default_value="0x0F" name="REG_PLL2_CP_CTRL">
+    <field name="RESERVED_0X37" bits="7:4">
+    </field>
+    <field name="PLL2_CP_CURRENT" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x38" default_value="0x18" name="REG_PLL2_PFD_CTRL">
+    <field name="RESERVED_0X38" bits="7:5">
+    </field>
+    <field name="PLL2_PFD_UP_EN" bits="4">
+    </field>
+    <field name="PLL2_PFD_DN_EN" bits="3">
+    </field>
+    <field name="PLL2_PFD_UP_FORCE" bits="2">
+    </field>
+    <field name="PLL2_PFD_DN_FORCE" bits="1">
+    </field>
+    <field name="PLL2_PFD_POLARITY" bits="0">
+    </field>
+  </register>
+
+  <register address="0x39" default_value="0x00" name="REG_OSCOUTX_PATH_CTRL">
+    <field name="RESERVED_0X39" bits="7:3">
+    </field>
+    <field name="OSCOUTX_DIVIDER" bits="2:1">
+    </field>
+    <field name="OSCOUTX_PATH_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x3A" default_value="0x00" name="REG_OSCOUT0_DRVR_CTRL">
+    <field name="RESERVED_0X3A" bits="7:6">
+    </field>
+    <field name="OSCOUT0_DRIVER_MODE" bits="5:4">
+    </field>
+    <field name="RESERVED_0X3A_2" bits="3">
+    </field>
+    <field name="OSCOUT0_DRIVER_IMPEDANCE" bits="2:1">
+    </field>
+    <field name="OSCOUT0_DRIVER_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x3B" default_value="0x00" name="REG_OSCOUT1_DRVR_CTRL">
+    <field name="RESERVED_0X3B" bits="7:6">
+    </field>
+    <field name="OSCOUT1_DRIVER_MODE" bits="5:4">
+    </field>
+    <field name="RESERVED_0X3B_2" bits="3">
+    </field>
+    <field name="OSCOUT1_DRIVER_IMPEDANCE" bits="2:1">
+    </field>
+    <field name="OSCOUT1_DRIVER_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x3C" default_value="0x00" name="REG_PLL2_MISC_CTRL">
+    <field name="RESERVED_0X3C" bits="7:0">
+    </field>
+  </register>
+
+
+  <register address="0x46" default_value="0x00" name="REG_GPI1_CTRL">
+    <field name="RESERVED_0X46" bits="7:5">
+    </field>
+    <field name="GPI1_SELECTION" bits="4:1">
+    </field>
+    <field name="GPI1_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x47" default_value="0x00" name="REG_GPI2_CTRL">
+    <field name="RESERVED_0X47" bits="7:5">
+    </field>
+    <field name="GPI2_SELECTION" bits="4:1">
+    </field>
+    <field name="GPI2_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x48" default_value="0x09" name="REG_GPI3_CTRL">
+    <field name="RESERVED_0X48" bits="7:5">
+    </field>
+    <field name="GPI3_SELECTION" bits="4:1">
+    </field>
+    <field name="GPI3_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x49" default_value="0x11" name="REG_GPI3_CTRL">
+    <field name="RESERVED_0X49" bits="7:5">
+    </field>
+    <field name="GPI4_SELECTION" bits="4:1">
+    </field>
+    <field name="GPI4_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x50" default_value="0x37" name="REG_GPO1_CTRL">
+    <field name="GPO1_SELECTION" bits="7:2">
+    </field>
+    <field name="GPO1_MODE" bits="1">
+    </field>
+    <field name="GPO1_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x51" default_value="0x33" name="REG_GPO2_CTRL">
+    <field name="GPO2_SELECTION" bits="7:2">
+    </field>
+    <field name="GPO2_MODE" bits="1">
+    </field>
+    <field name="GPO2_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x52" default_value="0x00" name="REG_GPO3_CTRL">
+    <field name="GPO3_SELECTION" bits="7:2">
+    </field>
+    <field name="GPO3_MODE" bits="1">
+    </field>
+    <field name="GPO3_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x53" default_value="0x00" name="REG_GPO4_CTRL">
+    <field name="GPO4_SELECTION" bits="7:2">
+    </field>
+    <field name="GPO4_MODE" bits="1">
+    </field>
+    <field name="GPO4_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x53" default_value="0x03" name="REG_SDATA_CTRL">
+    <field name="RESERVED_0X53" bits="7:2">
+    </field>
+    <field name="SDATA_MODE" bits="1">
+    </field>
+    <field name="SDATA_EN" bits="0">
+    </field>
+  </register>
+
+
+  <register address="0x5A" default_value="0x00" name="REG_PULSE_GEN_CTRL">
+    <field name="RESERVED_0X5A" bits="7:3">
+    </field>
+    <field name="PULSE_GEN_MODE_SELECTION" bits="2:0">
+    </field>
+  </register>
+
+  <register address="0x5B" default_value="0x06" name="REG_SYNC_CTRL">
+    <field name="RESERVED_0X5B" bits="7:3">
+    </field>
+    <field name="SYNC_RETIME" bits="2">
+    </field>
+    <field name="SYNC_THROUGH_PLL2" bits="1">
+    </field>
+    <field name="SYNC_POLARITY" bits="0">
+    </field>
+  </register>
+
+  <register address="0x5C" default_value="0x00" name="REG_SYSREF_TIMER_CTRL_LSB">
+    <field name="SYSREF_TIMER_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x5D" default_value="0x01" name="REG_SYSREF_TIMER_CTRL_MSB">
+    <field name="RESERVED_0X5D" bits="7:4">
+    </field>
+    <field name="SYSREF_TIMER_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x5E" default_value="0x00" name="REG_SYSREF_MISC_CTRL">
+    <field name="RESERVED_0X5E" bits="7:0">
+    </field>
+  </register>
+  
+  
+  
+  <register address="0x64" default_value="0x00" name="REG_EXTERNAL_VCO_CTRL">
+    <field name="RESERVED_0X64" bits="7:2">
+    </field>
+    <field name="EXT_VCO_DIV_BY_2_EN" bits="1">
+    </field>
+    <field name="LOW_FREQ_EXT_VCO_PATH" bits="0">
+    </field>
+  </register>
+  
+  <register address="0x65" default_value="0x00" name="REG_ANLG_DELAY_COMMON_CTRL">
+    <field name="RESERVED_0X65" bits="7:1">
+    </field>
+    <field name="ANALOG_DELAY_LOW_PWR_EN" bits="0">
+    </field>
+  </register>
+  
+  
+  
+  <register address="0x70" default_value="0x00" name="REG_PLL1_ALARM_MASK_CTRL">
+    <field name="PLL1_NEAR_LOCK_MASK" bits="7">
+    </field>
+    <field name="PLL1_LOCK_ACQ_MASK" bits="6">
+    </field>
+    <field name="PLL1_LOCK_DET_MASK" bits="5">
+    </field>
+    <field name="PLL1_HOLDOVER_MASK" bits="4">
+    </field>
+    <field name="PLL1_CLKIN_LOS_MASK" bits="3:0">
+    </field>
+  </register>
+  
+  <register address="0x71" default_value="0x10" name="REG_ALARM_MASK_CTRL">
+    <field name="RESERVED_0X71" bits="7:6">
+    </field>
+    <field name="SYNC_REQUEST_MASK" bits="4">
+    </field>
+    <field name="PLL1_PLL2_LOCK_DET_MASK" bits="3">
+    </field>
+    <field name="CLK_OUTPUTS_PHASE_STATUS_MASK" bits="2">
+    </field>
+    <field name="SYSREF_SYNC_STATUS_MASK" bits="1">
+    </field>
+    <field name="PLL2_LOCK_DET_MASK" bits="0">
+    </field>
+  </register>
+  
+  
+  
+  <register address="0x78" default_value="0x51" name="REG_PRODUCT_ID_LSB">
+    <field name="PRODUCT_ID_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+  
+  <register address="0x79" default_value="0x16" name="REG_PRODUCT_ID_MID">
+    <field name="PRODUCT_ID_15_8_MID" bits="7:0">
+    </field>
+  </register>
+  
+  <register address="0x7A" default_value="0x30" name="REG_PRODUCT_ID_MSB">
+    <field name="PRODUCT_ID_23_16_MSB" bits="7:0">
+    </field>
+  </register>
+  
+  
+  
+  <register address="0x7B" default_value="0x00" name="REG_READBACK">
+    <field name="RESERVED_0x7B" bits="7:1">
+    </field>
+    <field name="ALARM" bits="0">
+    </field>
+  </register>
+
+  <register address="0x7C" default_value="0x00" name="REG_PLL1_ALARM_READBACK">
+    <field name="PLL1_NEAR_LOCK" bits="7">
+    </field>
+    <field name="PLL1_LOCK_ACQ" bits="6">
+    </field>
+    <field name="PLL1_LOCK_DET" bits="5">
+    </field>
+    <field name="PLL1_HOLDOVER_STATUS" bits="4">
+    </field>
+    <field name="CLKIN_LOS" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x7D" default_value="0x00" name="REG_ALARM_READBACK">
+    <field name="RESERVED_0X7D" bits="7:5">
+    </field>
+    <field name="SYNC_REQ_STATUS" bits="4">
+    </field>
+    <field name="PLL1_PLL2_LOCK_DET" bits="3">
+    </field>
+    <field name="CLK_OUTPUTS_PHASE_STATUS" bits="2">
+    </field>
+    <field name="SYSREF_SYNC_STATUS" bits="1">
+    </field>
+    <field name="PLL2_LOCK_DET" bits="0">
+    </field>
+  </register>
+
+  <register address="0x7E" default_value="0x00" name="REG_LATCHED_ALARM_READBACK">
+    <field name="RESERVED_0X7E" bits="7">
+    </field>
+    <field name="PLL2_LOCK_ACQ_LATCHED" bits="6">
+    </field>
+    <field name="PLL1_LOCK_ACQ_LATCHED" bits="5">
+    </field>
+    <field name="PLL1_HOLDOVER_LATCHED" bits="4">
+    </field>
+    <field name="CLKIN_LOS_LATCHED" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x7F" default_value="0x00" name="REG_ALARM_READBACK_MISC">
+    <field name="RESERVED_0X7F" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+  <register address="0x82" default_value="0x00" name="REG_PLL1_STATUS_1">
+    <field name="RESERVED_0X82" bits="7">
+    </field>
+    <field name="PLL1_BEST_CLOCK" bits="6:5">
+    </field>
+    <field name="PLL1_ACTIVE_CLKIN" bits="4:3">
+    </field>
+    <field name="PLL1_FSM_STATE" bits="2:0">
+    </field>
+  </register>
+  
+  <register address="0x83" default_value="0x00" name="REG_PLL1_STATUS_2">
+    <field name="RESERVED_0X83" bits="7">
+    </field>
+    <field name="PLL1_HOLDOVER_DAC_AVG_VAL" bits="6:0">
+    </field>
+  </register>
+
+  <register address="0x84" default_value="0x00" name="REG_PLL1_STATUS_3">
+    <field name="HOLDOVER_COMPARATOR_VAL" bits="7">
+    </field>
+    <field name="PLL1_HOLDOVER_DAC_CURRENT_VAL" bits="6:0">
+    </field>
+  </register>
+
+  <register address="0x85" default_value="0x00" name="REG_PLL1_STATUS_4">
+    <field name="RESERVED_0x85" bits="7:4">
+    </field>
+    <field name="PLL1_ACTIVE_CLKIN_LOS" bits="3">
+    </field>
+    <field name="PLL1_VCXO_STATUS" bits="2">
+    </field>
+    <field name="PLL1_HOLDOVER_ADC_STATUS" bits="1">
+    </field>
+    <field name="PLL1_HOLDOVER_ADC_INPUT_RANGE_STATUS" bits="0">
+    </field>
+  </register>
+
+  <register address="0x86" default_value="0x00" name="REG_PLL1_STATUS_5">
+    <field name="RESERVED_0x86" bits="7:5">
+    </field>
+    <field name="PLL1_HOLDOVER_EXIT_PHASE" bits="4:3">
+    </field>
+    <field name="RESERVED_0X86_2" bits="2:0">
+    </field>
+  </register>
+
+  <register address="0x87" default_value="0x00" name="REG_PLL1_STATUS_6">
+    <field name="RESERVED_0x87" bits="7:0">
+    </field>
+  </register>
+
+
+  
+  
+  <register address="0x8C" default_value="0x00" name="REG_PLL2_STATUS_1">
+    <field name="PLL2_AUTOTUNE_VAL" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x8D" default_value="0x00" name="REG_PLL2_STATUS_2">
+    <field name="PLL2_AUTOTUNE_SIGNED_ERROR_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x8E" default_value="0x00" name="REG_PLL2_STATUS_3">
+    <field name="PLL2_AUTOTUNE_STATUS" bits="7">
+    </field>
+    <field name="PLL2_AUTOTUNE_ERROR_SIGN" bits="6">
+    </field>
+    <field name="PLL2_AUTOTUNE_SIGNED_ERROR_13_8_MSB" bits="5:0">
+    </field>
+  </register>
+
+  <register address="0x8F" default_value="0x00" name="REG_PLL2_STATUS_4">
+    <field name="PLL2_AUTOTUNE_FSM_STATE" bits="7:4">
+    </field>
+    <field name="PLL2_SYNC_FSM_STATE" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x90" default_value="0x00" name="REG_PLL2_STATUS_5">
+    <field name="RESERVED_0X90" bits="7:0">
+    </field>
+  </register>
+
+
+  
+  <register address="0x91" default_value="0x00" name="REG_SYSREF_STATUS">
+    <field name="RESERVED_0X91" bits="7:5">
+    </field>
+    <field name="CHANNEL_OUTPUTS_FSM_BUSY" bits="4">
+    </field>
+    <field name="SYSREF_FSM_STATE" bits="3:0">
+    </field>
+  </register>
+
+
+  
+  
+  <register address="0x96" default_value="0x00" name="REG_OTHER_CTRLS_1">
+    <field name="RESERVED_0X96" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x97" default_value="0x00" name="REG_OTHER_CTRLS_2">
+    <field name="RESERVED_0X97" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x98" default_value="0x00" name="REG_OTHER_CTRLS_3">
+    <field name="RESERVED_0X98" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x99" default_value="0x00" name="REG_OTHER_CTRLS_4">
+    <field name="RESERVED_0X99" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x9A" default_value="0x00" name="REG_OTHER_CTRLS_5">
+    <field name="RESERVED_0X9A" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x9B" default_value="0xAA" name="REG_OTHER_CTRLS_6">
+    <field name="RESERVED_0X9B" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x9C" default_value="0xAA" name="REG_OTHER_CTRLS_7">
+    <field name="RESERVED_0X9C" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x9D" default_value="0xAA" name="REG_OTHER_CTRLS_8">
+    <field name="RESERVED_0X9D" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x9E" default_value="0xAA" name="REG_OTHER_CTRLS_9">
+    <field name="RESERVED_0X9E" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x9F" default_value="0x55" name="REG_OTHER_CTRLS_10">
+    <field name="CLKOUT_LOW_POWER_SETTING" bits="7:0">
+      For optimum performance, set to 0x4D instead of defaut value
+    </field>
+  </register>
+
+  <register address="0xA0" default_value="0x56" name="REG_OTHER_CTRLS_11">
+    <field name="CLKOUT_HIGH_POWER_SETTING" bits="7:0">
+      For optimum performance, set to 0xDF instead of defaut value
+    </field>
+  </register>
+
+  <register address="0xA1" default_value="0x91" name="REG_OTHER_CTRLS_12">
+    <field name="RESERVED_0XA1" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xA2" default_value="0x03" name="REG_OTHER_CTRLS_13">
+    <field name="RESERVED_0XA2" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xA3" default_value="0x00" name="REG_OTHER_CTRLS_14">
+    <field name="RESERVED_0XA3" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xA4" default_value="0x00" name="REG_OTHER_CTRLS_15">
+    <field name="RESERVED_0XA4" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xA5" default_value="0x00" name="REG_OTHER_CTRLS_16">
+    <field name="PLL1_MORE_DELAY" bits="7:0">
+      For optimum performance, set to 0x06 instead of default value
+    </field>
+  </register>
+
+  <register address="0xA6" default_value="0x1C" name="REG_OTHER_CTRLS_17">
+    <field name="RESERVED_0XA6" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xA7" default_value="0x00" name="REG_OTHER_CTRLS_18">
+    <field name="RESERVED_0XA7" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xA8" default_value="0x22" name="REG_OTHER_CTRLS_19">
+    <field name="PLL1_HOLDOVER_DAC_GM" bits="7:0">
+      For optimum performance, set to 0x06 instead of default value
+    </field>
+  </register>
+
+  <register address="0xA9" default_value="0x00" name="REG_OTHER_CTRLS_20">
+    <field name="RESERVED_0XA9" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xAB" default_value="0x00" name="REG_OTHER_CTRLS_21">
+    <field name="RESERVED_0XAB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xAC" default_value="0x20" name="REG_OTHER_CTRLS_22">
+    <field name="RESERVED_0XAC" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xAD" default_value="0x00" name="REG_OTHER_CTRLS_23">
+    <field name="RESERVED_0XAD" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xAE" default_value="0x08" name="REG_OTHER_CTRLS_24">
+    <field name="RESERVED_0XAE" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xAF" default_value="0x50" name="REG_OTHER_CTRLS_25">
+    <field name="RESERVED_0XAF" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xB0" default_value="0x09" name="REG_OTHER_CTRLS_26">
+    <field name="VTUNE_PRESET" bits="7:0">
+      For optimum performance, set to 0x04 instead of default value
+    </field>
+  </register>
+
+  <register address="0xB1" default_value="0x0D" name="REG_OTHER_CTRLS_27">
+    <field name="RESERVED_0XB1" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xB2" default_value="0x00" name="REG_OTHER_CTRLS_28">
+    <field name="RESERVED_0XB2" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xB3" default_value="0x00" name="REG_OTHER_CTRLS_29">
+    <field name="RESERVED_0XB3" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xB5" default_value="0x00" name="REG_OTHER_CTRLS_30">
+    <field name="RESERVED_0XB5" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xB6" default_value="0x00" name="REG_OTHER_CTRLS_31">
+    <field name="RESERVED_0XB6" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xB7" default_value="0x00" name="REG_OTHER_CTRLS_32">
+    <field name="RESERVED_0XB7" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xB8" default_value="0x00" name="REG_OTHER_CTRLS_33">
+    <field name="RESERVED_0XB8" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+  <register address="0xC8" default_value="0xF3" name="REG_CH0_OUT_CTRL_1">
+    <field name="CH0_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH0_SYNC_EN" bits="6">
+    </field>
+    <field name="CH0_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0XC8" bits="4">
+    </field>
+    <field name="CH0_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH0_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH0_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0xC9" default_value="0x04" name="REG_CH0_OUT_CTRL_2">
+    <field name="CH0_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xCA" default_value="0x00" name="REG_CH0_OUT_CTRL_3">
+    <field name="RESERVED_0XCA" bits="7:4">
+    </field>
+    <field name="CH0_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xCB" default_value="0x00" name="REG_CH0_OUT_CTRL_4">
+    <field name="RESERVED_0XCB" bits="7:3">
+    </field>
+    <field name="CH0_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xCC" default_value="0x00" name="REG_CH0_OUT_CTRL_5">
+    <field name="RESERVED_0XCC" bits="7:3">
+    </field>
+    <field name="CH0_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xCD" default_value="0x00" name="REG_CH0_OUT_CTRL_6">
+    <field name="CH0_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xCE" default_value="0x00" name="REG_CH0_OUT_CTRL_7">
+    <field name="RESERVED_0XCE" bits="7:4">
+    </field>
+    <field name="CH0_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xCF" default_value="0x00" name="REG_CH0_OUT_CTRL_8">
+    <field name="RESERVED_0XCF" bits="7:2">
+    </field>
+    <field name="CH0_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xD0" default_value="0x01" name="REG_CH0_OUT_CTRL_9">
+    <field name="CH0_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH0_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH0_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0XD0" bits="2">
+    </field>
+    <field name="CH0_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xD1" default_value="0x00" name="REG_CH0_OUT_CTRL_10">
+    <field name="RESERVED_0XD1" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+
+  <register address="0xD2" default_value="0xFD" name="REG_CH1_OUT_CTRL_1">
+    <field name="CH1_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH1_SYNC_EN" bits="6">
+    </field>
+    <field name="CH1_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0XD2" bits="4">
+    </field>
+    <field name="CH1_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH1_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH1_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0xD3" default_value="0x00" name="REG_CH1_OUT_CTRL_2">
+    <field name="CH1_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xD4" default_value="0x01" name="REG_CH1_OUT_CTRL_3">
+    <field name="RESERVED_0XD4" bits="7:4">
+    </field>
+    <field name="CH1_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xD5" default_value="0x00" name="REG_CH1_OUT_CTRL_4">
+    <field name="RESERVED_0XD5" bits="7:3">
+    </field>
+    <field name="CH1_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xD6" default_value="0x00" name="REG_CH1_OUT_CTRL_5">
+    <field name="RESERVED_0XD6" bits="7:3">
+    </field>
+    <field name="CH1_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xD7" default_value="0x00" name="REG_CH1_OUT_CTRL_6">
+    <field name="CH1_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xD8" default_value="0x00" name="REG_CH1_OUT_CTRL_7">
+    <field name="RESERVED_0XD8" bits="7:4">
+    </field>
+    <field name="CH1_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xD9" default_value="0x00" name="REG_CH1_OUT_CTRL_8">
+    <field name="RESERVED_0XD9" bits="7:2">
+    </field>
+    <field name="CH1_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xDA" default_value="0x30" name="REG_CH1_OUT_CTRL_9">
+    <field name="CH1_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH1_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH1_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0XDA" bits="2">
+    </field>
+    <field name="CH1_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xDB" default_value="0x00" name="REG_CH1_OUT_CTRL_10">
+    <field name="RESERVED_0XDB" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+  <register address="0xDC" default_value="0xF3" name="REG_CH2_OUT_CTRL_1">
+    <field name="CH2_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH2_SYNC_EN" bits="6">
+    </field>
+    <field name="CH2_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0XDC" bits="4">
+    </field>
+    <field name="CH2_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH2_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH2_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0xDD" default_value="0x08" name="REG_CH2_OUT_CTRL_2">
+    <field name="CH2_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xDE" default_value="0x00" name="REG_CH2_OUT_CTRL_3">
+    <field name="RESERVED_0XDE" bits="7:4">
+    </field>
+    <field name="CH2_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xDF" default_value="0x00" name="REG_CH2_OUT_CTRL_4">
+    <field name="RESERVED_0XDF" bits="7:3">
+    </field>
+    <field name="CH2_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xE0" default_value="0x00" name="REG_CH2_OUT_CTRL_5">
+    <field name="RESERVED_0XE0" bits="7:3">
+    </field>
+    <field name="CH2_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xE1" default_value="0x00" name="REG_CH2_OUT_CTRL_6">
+    <field name="CH2_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xE2" default_value="0x00" name="REG_CH2_OUT_CTRL_7">
+    <field name="RESERVED_0XE2" bits="7:4">
+    </field>
+    <field name="CH2_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xE3" default_value="0x00" name="REG_CH2_OUT_CTRL_8">
+    <field name="RESERVED_0XE3" bits="7:2">
+    </field>
+    <field name="CH2_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xE4" default_value="0x01" name="REG_CH2_OUT_CTRL_9">
+    <field name="CH2_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH2_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH2_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0XE4" bits="2">
+    </field>
+    <field name="CH2_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xE5" default_value="0x00" name="REG_CH2_OUT_CTRL_10">
+    <field name="RESERVED_0XE5" bits="7:0">
+    </field>
+  </register>
+
+
+
+  <register address="0xE6" default_value="0xFD" name="REG_CH3_OUT_CTRL_1">
+    <field name="CH3_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH3_SYNC_EN" bits="6">
+    </field>
+    <field name="CH3_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0XE6" bits="4">
+    </field>
+    <field name="CH3_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH3_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH3_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0xE7" default_value="0x00" name="REG_CH3_OUT_CTRL_2">
+    <field name="CH3_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xE8" default_value="0x01" name="REG_CH3_OUT_CTRL_3">
+    <field name="RESERVED_0XE8" bits="7:4">
+    </field>
+    <field name="CH3_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xE9" default_value="0x00" name="REG_CH3_OUT_CTRL_4">
+    <field name="RESERVED_0XE9" bits="7:3">
+    </field>
+    <field name="CH3_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xEA" default_value="0x00" name="REG_CH3_OUT_CTRL_5">
+    <field name="RESERVED_0XEA" bits="7:3">
+    </field>
+    <field name="CH3_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xEB" default_value="0x00" name="REG_CH3_OUT_CTRL_6">
+    <field name="CH3_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xEC" default_value="0x00" name="REG_CH3_OUT_CTRL_7">
+    <field name="RESERVED_0XEC" bits="7:4">
+    </field>
+    <field name="CH3_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xED" default_value="0x00" name="REG_CH3_OUT_CTRL_8">
+    <field name="RESERVED_0XED" bits="7:2">
+    </field>
+    <field name="CH3_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xEE" default_value="0x30" name="REG_CH3_OUT_CTRL_9">
+    <field name="CH3_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH3_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH3_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0XEE" bits="2">
+    </field>
+    <field name="CH3_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xEF" default_value="0x00" name="REG_CH3_OUT_CTRL_10">
+    <field name="RESERVED_0XEF" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+
+  <register address="0xF0" default_value="0xF3" name="REG_CH4_OUT_CTRL_1">
+    <field name="CH4_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH4_SYNC_EN" bits="6">
+    </field>
+    <field name="CH4_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0XF0" bits="4">
+    </field>
+    <field name="CH4_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH4_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH4_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0xF1" default_value="0x02" name="REG_CH4_OUT_CTRL_2">
+    <field name="CH4_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xF2" default_value="0x00" name="REG_CH4_OUT_CTRL_3">
+    <field name="RESERVED_0XF2" bits="7:4">
+    </field>
+    <field name="CH4_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xF3" default_value="0x00" name="REG_CH4_OUT_CTRL_4">
+    <field name="RESERVED_0XF3" bits="7:3">
+    </field>
+    <field name="CH4_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xF4" default_value="0x00" name="REG_CH4_OUT_CTRL_5">
+    <field name="RESERVED_0XF5" bits="7:3">
+    </field>
+    <field name="CH4_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xF5" default_value="0x00" name="REG_CH4_OUT_CTRL_6">
+    <field name="CH4_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xF6" default_value="0x00" name="REG_CH4_OUT_CTRL_7">
+    <field name="RESERVED_0XF6" bits="7:4">
+    </field>
+    <field name="CH4_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xF7" default_value="0x00" name="REG_CH4_OUT_CTRL_8">
+    <field name="RESERVED_0XF7" bits="7:2">
+    </field>
+    <field name="CH4_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xF8" default_value="0x01" name="REG_CH4_OUT_CTRL_9">
+    <field name="CH4_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH4_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH4_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0XF8" bits="2">
+    </field>
+    <field name="CH4_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0xF9" default_value="0x00" name="REG_CH4_OUT_CTRL_10">
+    <field name="RESERVED_0XF9" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+
+  <register address="0xFA" default_value="0xFD" name="REG_CH5_OUT_CTRL_1">
+    <field name="CH5_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH5_SYNC_EN" bits="6">
+    </field>
+    <field name="CH5_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0XFA" bits="4">
+    </field>
+    <field name="CH5_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH5_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH5_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0xFB" default_value="0x00" name="REG_CH5_OUT_CTRL_2">
+    <field name="CH5_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0xFC" default_value="0x01" name="REG_CH5_OUT_CTRL_3">
+    <field name="RESERVED_0XFC" bits="7:4">
+    </field>
+    <field name="CH5_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0xFD" default_value="0x00" name="REG_CH5_OUT_CTRL_4">
+    <field name="RESERVED_0XFD" bits="7:3">
+    </field>
+    <field name="CH5_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xFE" default_value="0x00" name="REG_CH5_OUT_CTRL_5">
+    <field name="RESERVED_0XFE" bits="7:3">
+    </field>
+    <field name="CH5_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0xFF" default_value="0x00" name="REG_CH5_OUT_CTRL_6">
+    <field name="CH5_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x100" default_value="0x00" name="REG_CH5_OUT_CTRL_7">
+    <field name="RESERVED_0X100" bits="7:4">
+    </field>
+    <field name="CH5_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x101" default_value="0x00" name="REG_CH5_OUT_CTRL_8">
+    <field name="RESERVED_0X101" bits="7:2">
+    </field>
+    <field name="CH5_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x102" default_value="0x30" name="REG_CH5_OUT_CTRL_9">
+    <field name="CH5_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH5_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH5_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0X102" bits="2">
+    </field>
+    <field name="CH5_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x103" default_value="0x00" name="REG_CH5_OUT_CTRL_10">
+    <field name="RESERVED_0X103" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+
+  <register address="0x104" default_value="0xF3" name="REG_CH6_OUT_CTRL_1">
+    <field name="CH6_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH6_SYNC_EN" bits="6">
+    </field>
+    <field name="CH6_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0X104" bits="4">
+    </field>
+    <field name="CH6_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH6_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH6_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x105" default_value="0x02" name="REG_CH6_OUT_CTRL_2">
+    <field name="CH6_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x106" default_value="0x00" name="REG_CH6_OUT_CTRL_3">
+    <field name="RESERVED_0X106" bits="7:4">
+    </field>
+    <field name="CH6_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x107" default_value="0x00" name="REG_CH6_OUT_CTRL_4">
+    <field name="RESERVED_0X107" bits="7:3">
+    </field>
+    <field name="CH6_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0x108" default_value="0x00" name="REG_CH6_OUT_CTRL_5">
+    <field name="RESERVED_0X108" bits="7:3">
+    </field>
+    <field name="CH6_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0x109" default_value="0x00" name="REG_CH6_OUT_CTRL_6">
+    <field name="CH6_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x10A" default_value="0x00" name="REG_CH6_OUT_CTRL_7">
+    <field name="RESERVED_0X10A" bits="7:4">
+    </field>
+    <field name="CH6_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x10B" default_value="0x00" name="REG_CH6_OUT_CTRL_8">
+    <field name="RESERVED_0X10B" bits="7:2">
+    </field>
+    <field name="CH6_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x10C" default_value="0x01" name="REG_CH6_OUT_CTRL_9">
+    <field name="CH6_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH6_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH6_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0X10C" bits="2">
+    </field>
+    <field name="CH6_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x10D" default_value="0x00" name="REG_CH6_OUT_CTRL_10">
+    <field name="RESERVED_0X10D" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+
+
+  <register address="0x10E" default_value="0xFD" name="REG_CH7_OUT_CTRL_1">
+    <field name="CH7_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH7_SYNC_EN" bits="6">
+    </field>
+    <field name="CH7_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0X10E" bits="4">
+    </field>
+    <field name="CH7_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH7_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH7_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x10F" default_value="0x00" name="REG_CH7_OUT_CTRL_2">
+    <field name="CH7_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x110" default_value="0x00" name="REG_CH7_OUT_CTRL_3">
+    <field name="RESERVED_0X110" bits="7:4">
+    </field>
+    <field name="CH7_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x111" default_value="0x00" name="REG_CH7_OUT_CTRL_4">
+    <field name="RESERVED_0X111" bits="7:3">
+    </field>
+    <field name="CH7_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0x112" default_value="0x00" name="REG_CH7_OUT_CTRL_5">
+    <field name="RESERVED_0X112" bits="7:3">
+    </field>
+    <field name="CH7_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0x113" default_value="0x00" name="REG_CH7_OUT_CTRL_6">
+    <field name="CH7_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x114" default_value="0x00" name="REG_CH7_OUT_CTRL_7">
+    <field name="RESERVED_0X114" bits="7:4">
+    </field>
+    <field name="CH7_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x115" default_value="0x00" name="REG_CH7_OUT_CTRL_8">
+    <field name="RESERVED_0X115" bits="7:2">
+    </field>
+    <field name="CH7_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x116" default_value="0x30" name="REG_CH7_OUT_CTRL_9">
+    <field name="CH7_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH7_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH7_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0X116" bits="2">
+    </field>
+    <field name="CH7_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x117" default_value="0x00" name="REG_CH7_OUT_CTRL_10">
+    <field name="RESERVED_0X117" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+  <register address="0x118" default_value="0xF3" name="REG_CH8_OUT_CTRL_1">
+    <field name="CH8_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH8_SYNC_EN" bits="6">
+    </field>
+    <field name="CH8_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0X119" bits="4">
+    </field>
+    <field name="CH8_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH8_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH8_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x119" default_value="0x02" name="REG_CH8_OUT_CTRL_2">
+    <field name="CH8_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x11A" default_value="0x00" name="REG_CH8_OUT_CTRL_3">
+    <field name="RESERVED_0X11A" bits="7:4">
+    </field>
+    <field name="CH8_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x11B" default_value="0x00" name="REG_CH8_OUT_CTRL_4">
+    <field name="RESERVED_0X11B" bits="7:3">
+    </field>
+    <field name="CH8_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0x11C" default_value="0x00" name="REG_CH8_OUT_CTRL_5">
+    <field name="RESERVED_0X11C" bits="7:3">
+    </field>
+    <field name="CH8_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0x11D" default_value="0x00" name="REG_CH8_OUT_CTRL_6">
+    <field name="CH8_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x11E" default_value="0x00" name="REG_CH8_OUT_CTRL_7">
+    <field name="RESERVED_0X11E" bits="7:4">
+    </field>
+    <field name="CH8_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x11F" default_value="0x00" name="REG_CH8_OUT_CTRL_8">
+    <field name="RESERVED_0X11F" bits="7:2">
+    </field>
+    <field name="CH8_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x120" default_value="0x01" name="REG_CH8_OUT_CTRL_9">
+    <field name="CH8_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH8_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH8_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0X120" bits="2">
+    </field>
+    <field name="CH8_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x121" default_value="0x00" name="REG_CH8_OUT_CTRL_10">
+    <field name="RESERVED_0X121" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+  <register address="0x122" default_value="0xFD" name="REG_CH9_OUT_CTRL_1">
+    <field name="CH9_HIGH_PERF_MODE" bits="7">
+    </field>
+    <field name="CH9_SYNC_EN" bits="6">
+    </field>
+    <field name="CH9_SLIP_EN" bits="5">
+    </field>
+    <field name="RESERVED_0X122" bits="4">
+    </field>
+    <field name="CH9_STARTUP_MODE" bits="3:2">
+    </field>
+    <field name="CH9_MULTISLIP_EN" bits="1">
+    </field>
+    <field name="CH9_EN" bits="0">
+    </field>
+  </register>
+
+  <register address="0x123" default_value="0x00" name="REG_CH9_OUT_CTRL_2">
+    <field name="CH9_DIV_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x124" default_value="0x01" name="REG_CH9_OUT_CTRL_3">
+    <field name="RESERVED_0X124" bits="7:4">
+    </field>
+    <field name="CH9_DIV_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x125" default_value="0x00" name="REG_CH9_OUT_CTRL_4">
+    <field name="RESERVED_0X125" bits="7:3">
+    </field>
+    <field name="CH9_FINE_ANLG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0x126" default_value="0x00" name="REG_CH9_OUT_CTRL_5">
+    <field name="RESERVED_0X126" bits="7:3">
+    </field>
+    <field name="CH9_COARSE_DIG_DELAY" bits="4:0">
+    </field>
+  </register>
+
+  <register address="0x127" default_value="0x00" name="REG_CH9_OUT_CTRL_6">
+    <field name="CH9_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+    </field>
+  </register>
+
+  <register address="0x128" default_value="0x00" name="REG_CH9_OUT_CTRL_7">
+    <field name="RESERVED_0X128" bits="7:4">
+    </field>
+    <field name="CH9_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+    </field>
+  </register>
+
+  <register address="0x129" default_value="0x00" name="REG_CH9_OUT_CTRL_8">
+    <field name="RESERVED_0X129" bits="7:2">
+    </field>
+    <field name="CH9_OUTPUT_MUX_SELECT" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x12A" default_value="0x30" name="REG_CH9_OUT_CTRL_9">
+    <field name="CH9_FORCE_MUTE" bits="7:6">
+    </field>
+    <field name="CH9_DYNAMIC_DRIVER_EN" bits="5">
+    </field>
+    <field name="CH9_DRIVER_MODE" bits="4:3">
+    </field>
+    <field name="RESERVED_0X12A" bits="2">
+    </field>
+    <field name="CH9_DRIVER_IMPEDANCE" bits="1:0">
+    </field>
+  </register>
+
+  <register address="0x12B" default_value="0x00" name="REG_CH9_OUT_CTRL_10">
+    <field name="RESERVED_0X12B" bits="7:0">
+    </field>
+  </register>
+
+
+
+
+
+<register address="0x12C" default_value="0xF3" name="REG_CH10_OUT_CTRL_1">
+  <field name="CH10_HIGH_PERF_MODE" bits="7">
+  </field>
+  <field name="CH10_SYNC_EN" bits="6">
+  </field>
+  <field name="CH10_SLIP_EN" bits="5">
+  </field>
+  <field name="RESERVED_0X12C" bits="4">
+  </field>
+  <field name="CH10_STARTUP_MODE" bits="3:2">
+  </field>
+  <field name="CH10_MULTISLIP_EN" bits="1">
+  </field>
+  <field name="CH10_EN" bits="0">
+  </field>
+</register>
+
+<register address="0x12D" default_value="0x02" name="REG_CH10_OUT_CTRL_2">
+  <field name="CH10_DIV_7_0_LSB" bits="7:0">
+  </field>
+</register>
+
+<register address="0x12E" default_value="0x00" name="REG_CH10_OUT_CTRL_3">
+  <field name="RESERVED_0X12E" bits="7:4">
+  </field>
+  <field name="CH10_DIV_11_8_MSB" bits="3:0">
+  </field>
+</register>
+
+<register address="0x12F" default_value="0x00" name="REG_CH10_OUT_CTRL_4">
+  <field name="RESERVED_0X12F" bits="7:3">
+  </field>
+  <field name="CH10_FINE_ANLG_DELAY" bits="4:0">
+  </field>
+</register>
+
+<register address="0x130" default_value="0x00" name="REG_CH10_OUT_CTRL_5">
+  <field name="RESERVED_0X130" bits="7:3">
+  </field>
+  <field name="CH10_COARSE_DIG_DELAY" bits="4:0">
+  </field>
+</register>
+
+<register address="0x131" default_value="0x00" name="REG_CH10_OUT_CTRL_6">
+  <field name="CH10_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+  </field>
+</register>
+
+<register address="0x132" default_value="0x00" name="REG_CH10_OUT_CTRL_7">
+  <field name="RESERVED_0X132" bits="7:4">
+  </field>
+  <field name="CH10_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+  </field>
+</register>
+
+<register address="0x133" default_value="0x00" name="REG_CH10_OUT_CTRL_8">
+  <field name="RESERVED_0X133" bits="7:2">
+  </field>
+  <field name="CH10_OUTPUT_MUX_SELECT" bits="1:0">
+  </field>
+</register>
+
+<register address="0x134" default_value="0x01" name="REG_CH10_OUT_CTRL_9">
+  <field name="CH10_FORCE_MUTE" bits="7:6">
+  </field>
+  <field name="CH10_DYNAMIC_DRIVER_EN" bits="5">
+  </field>
+  <field name="CH10_DRIVER_MODE" bits="4:3">
+  </field>
+  <field name="RESERVED_0X134" bits="2">
+  </field>
+  <field name="CH10_DRIVER_IMPEDANCE" bits="1:0">
+  </field>
+</register>
+
+<register address="0x135" default_value="0x00" name="REG_CH10_OUT_CTRL_10">
+  <field name="RESERVED_0X135" bits="7:0">
+  </field>
+</register>
+
+
+
+
+
+
+<register address="0x136" default_value="0xFD" name="REG_CH11_OUT_CTRL_1">
+  <field name="CH11_HIGH_PERF_MODE" bits="7">
+  </field>
+  <field name="CH11_SYNC_EN" bits="6">
+  </field>
+  <field name="CH11_SLIP_EN" bits="5">
+  </field>
+  <field name="RESERVED_0X136" bits="4">
+  </field>
+  <field name="CH11_STARTUP_MODE" bits="3:2">
+  </field>
+  <field name="CH11_MULTISLIP_EN" bits="1">
+  </field>
+  <field name="CH11_EN" bits="0">
+  </field>
+</register>
+
+<register address="0x137" default_value="0x00" name="REG_CH11_OUT_CTRL_2">
+  <field name="CH11_DIV_7_0_LSB" bits="7:0">
+  </field>
+</register>
+
+<register address="0x138" default_value="0x01" name="REG_CH11_OUT_CTRL_3">
+  <field name="RESERVED_0X138" bits="7:4">
+  </field>
+  <field name="CH11_DIV_11_8_MSB" bits="3:0">
+  </field>
+</register>
+
+<register address="0x139" default_value="0x00" name="REG_CH11_OUT_CTRL_4">
+  <field name="RESERVED_0X139" bits="7:3">
+  </field>
+  <field name="CH11_FINE_ANLG_DELAY" bits="4:0">
+  </field>
+</register>
+
+<register address="0x13A" default_value="0x00" name="REG_CH11_OUT_CTRL_5">
+  <field name="RESERVED_0X13A" bits="7:3">
+  </field>
+  <field name="CH11_COARSE_DIG_DELAY" bits="4:0">
+  </field>
+</register>
+
+<register address="0x13B" default_value="0x00" name="REG_CH11_OUT_CTRL_6">
+  <field name="CH11_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+  </field>
+</register>
+
+<register address="0x13C" default_value="0x00" name="REG_CH11_OUT_CTRL_7">
+  <field name="RESERVED_0X13C" bits="7:4">
+  </field>
+  <field name="CH11_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+  </field>
+</register>
+
+<register address="0x13D" default_value="0x00" name="REG_CH11_OUT_CTRL_8">
+  <field name="RESERVED_0X13D" bits="7:2">
+  </field>
+  <field name="CH11_OUTPUT_MUX_SELECT" bits="1:0">
+  </field>
+</register>
+
+<register address="0x13E" default_value="0x30" name="REG_CH11_OUT_CTRL_9">
+  <field name="CH11_FORCE_MUTE" bits="7:6">
+  </field>
+  <field name="CH11_DYNAMIC_DRIVER_EN" bits="5">
+  </field>
+  <field name="CH11_DRIVER_MODE" bits="4:3">
+  </field>
+  <field name="RESERVED_0X13E" bits="2">
+  </field>
+  <field name="CH11_DRIVER_IMPEDANCE" bits="1:0">
+  </field>
+</register>
+
+<register address="0x13F" default_value="0x00" name="REG_CH11_OUT_CTRL_10">
+  <field name="RESERVED_0X13F" bits="7:0">
+  </field>
+</register>
+
+
+
+
+
+
+<register address="0x140" default_value="0xF3" name="REG_CH12_OUT_CTRL_1">
+  <field name="CH12_HIGH_PERF_MODE" bits="7">
+  </field>
+  <field name="CH12_SYNC_EN" bits="6">
+  </field>
+  <field name="CH12_SLIP_EN" bits="5">
+  </field>
+  <field name="RESERVED_0X140" bits="4">
+  </field>
+  <field name="CH12_STARTUP_MODE" bits="3:2">
+  </field>
+  <field name="CH12_MULTISLIP_EN" bits="1">
+  </field>
+  <field name="CH12_EN" bits="0">
+  </field>
+</register>
+
+<register address="0x141" default_value="0x10" name="REG_CH12_OUT_CTRL_2">
+  <field name="CH12_DIV_7_0_LSB" bits="7:0">
+  </field>
+</register>
+
+<register address="0x142" default_value="0x00" name="REG_CH12_OUT_CTRL_3">
+  <field name="RESERVED_0X142" bits="7:4">
+  </field>
+  <field name="CH12_DIV_11_8_MSB" bits="3:0">
+  </field>
+</register>
+
+<register address="0x143" default_value="0x00" name="REG_CH12_OUT_CTRL_4">
+  <field name="RESERVED_0X143" bits="7:3">
+  </field>
+  <field name="CH12_FINE_ANLG_DELAY" bits="4:0">
+  </field>
+</register>
+
+<register address="0x144" default_value="0x00" name="REG_CH12_OUT_CTRL_5">
+  <field name="RESERVED_0X144" bits="7:3">
+  </field>
+  <field name="CH12_COARSE_DIG_DELAY" bits="4:0">
+  </field>
+</register>
+
+<register address="0x145" default_value="0x00" name="REG_CH12_OUT_CTRL_6">
+  <field name="CH12_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+  </field>
+</register>
+
+<register address="0x146" default_value="0x00" name="REG_CH12_OUT_CTRL_7">
+  <field name="RESERVED_0X146" bits="7:4">
+  </field>
+  <field name="CH12_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+  </field>
+</register>
+
+<register address="0x147" default_value="0x00" name="REG_CH12_OUT_CTRL_8">
+  <field name="RESERVED_0X147" bits="7:2">
+  </field>
+  <field name="CH12_OUTPUT_MUX_SELECT" bits="1:0">
+  </field>
+</register>
+
+<register address="0x148" default_value="0x01" name="REG_CH12_OUT_CTRL_9">
+  <field name="CH12_FORCE_MUTE" bits="7:6">
+  </field>
+  <field name="CH12_DYNAMIC_DRIVER_EN" bits="5">
+  </field>
+  <field name="CH12_DRIVER_MODE" bits="4:3">
+  </field>
+  <field name="RESERVED_0X148" bits="2">
+  </field>
+  <field name="CH12_DRIVER_IMPEDANCE" bits="1:0">
+  </field>
+</register>
+
+<register address="0x149" default_value="0x00" name="REG_CH12_OUT_CTRL_10">
+  <field name="RESERVED_0X149" bits="7:0">
+  </field>
+</register>
+
+
+
+
+
+<register address="0x14A" default_value="0xFD" name="REG_CH13_OUT_CTRL_1">
+  <field name="CH13_HIGH_PERF_MODE" bits="7">
+  </field>
+  <field name="CH13_SYNC_EN" bits="6">
+  </field>
+  <field name="CH13_SLIP_EN" bits="5">
+  </field>
+  <field name="RESERVED_0X14A" bits="4">
+  </field>
+  <field name="CH13_STARTUP_MODE" bits="3:2">
+  </field>
+  <field name="CH13_MULTISLIP_EN" bits="1">
+  </field>
+  <field name="CH13_EN" bits="0">
+  </field>
+</register>
+
+<register address="0x14B" default_value="0x00" name="REG_CH13_OUT_CTRL_2">
+  <field name="CH13_DIV_7_0_LSB" bits="7:0">
+  </field>
+</register>
+
+<register address="0x14C" default_value="0x01" name="REG_CH13_OUT_CTRL_3">
+  <field name="RESERVED_0X14C" bits="7:4">
+  </field>
+  <field name="CH13_DIV_11_8_MSB" bits="3:0">
+  </field>
+</register>
+
+<register address="0x14D" default_value="0x00" name="REG_CH13_OUT_CTRL_4">
+  <field name="RESERVED_0X14D" bits="7:3">
+  </field>
+  <field name="CH13_FINE_ANLG_DELAY" bits="4:0">
+  </field>
+</register>
+
+<register address="0x14E" default_value="0x00" name="REG_CH13_OUT_CTRL_5">
+  <field name="RESERVED_0X14E" bits="7:3">
+  </field>
+  <field name="CH13_COARSE_DIG_DELAY" bits="4:0">
+  </field>
+</register>
+
+<register address="0x14F" default_value="0x00" name="REG_CH13_OUT_CTRL_6">
+  <field name="CH13_MULTISLIP_DIG_DELAY_7_0_LSB" bits="7:0">
+  </field>
+</register>
+
+<register address="0x150" default_value="0x00" name="REG_CH13_OUT_CTRL_7">
+  <field name="RESERVED_0X150" bits="7:4">
+  </field>
+  <field name="CH13_MULTISLIP_DIG_DELAY_11_8_MSB" bits="3:0">
+  </field>
+</register>
+
+<register address="0x151" default_value="0x00" name="REG_CH13_OUT_CTRL_8">
+  <field name="RESERVED_0X151" bits="7:2">
+  </field>
+  <field name="CH13_OUTPUT_MUX_SELECT" bits="1:0">
+  </field>
+</register>
+
+<register address="0x152" default_value="0x30" name="REG_CH13_OUT_CTRL_9">
+  <field name="CH13_FORCE_MUTE" bits="7:6">
+  </field>
+  <field name="CH13_DYNAMIC_DRIVER_EN" bits="5">
+  </field>
+  <field name="CH13_DRIVER_MODE" bits="4:3">
+  </field>
+  <field name="RESERVED_0X152" bits="2">
+  </field>
+  <field name="CH13_DRIVER_IMPEDANCE" bits="1:0">
+  </field>
+</register>
+
+<register address="0x153" default_value="0x00" name="REG_CH13_OUT_CTRL_10">
+  <field name="RESERVED_0X153" bits="7:0">
+  </field>
+</register>
+
+
 </register_map>
+
+
+
+
+
+
+
+
+
+
+
