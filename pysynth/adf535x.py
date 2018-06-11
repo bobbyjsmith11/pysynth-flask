@@ -279,11 +279,6 @@ class Adf5356(Adf5355):
     def __init__(self, ctl='cp2130'):
         """ 
         """ 
-        # if spi == None:
-        #         self.spi = control.Sub20Device()
-        # else:
-        #     self.spi = spi
-        # control.setup_lock_detect()    # configure the lock detect GPIO
         if ctl == 'cp2130':
             try:
                 import control
@@ -296,14 +291,33 @@ class Adf5356(Adf5355):
             except:
                 from .import control_rpi
             self.spi = control_rpi.RpiControl()
-        # self.spi = Cp2130SpiDevice()
         self.default_registers()
         self.ref = 122.88e6
 
+    def dump_register_contents(self, fo=None):
+        if fo != None:
+            if isinstance(fo, str):
+                fo = open(fo, 'w')
+        addrs = list(reversed(range(14)))
+        for addr in addrs:
+            s = str("R{:d}: 0x{:x}".format(addr, self.reg[addr].value))
+            print(s)
+            if fo != None:
+                fo.write(s + "\n")
+        
+        if fo != None:
+            fo.close()
+        return
+    
     def set_100M(self):
         """ set for RFoutA to 100 MHz
         """
         self.load_from_file('reg_maps/ADF5356_100M.txt')
+
+    def set_122M88(self):
+        """ set for RFoutA to 100 MHz
+        """
+        self.load_from_file('reg_maps/ADF5356_122M88.txt')
 
     def default_registers(self):
         """ load the default register set
@@ -312,7 +326,7 @@ class Adf5356(Adf5355):
 
     def initialize(self):
         # self.hard_code_registers()
-        control.reset_pll()
+        self.spi.reset_pll()
         addrs = list(reversed(range(14)))       # ADF5356 has an extra regsiter
         for addr in addrs:
             self.write_reg(addr)
@@ -328,8 +342,7 @@ class Adf5356(Adf5355):
             reg_data (int) - 32 bit data to write
             reg_addr (int) - register address
         """
-        # self.spi.write_int(self.reg[reg_addr].value)
-        control.spi_write_int(self.reg[reg_addr].value)
+        self.spi.write_int(self.reg[reg_addr].value)
         return
 
 #########################################################

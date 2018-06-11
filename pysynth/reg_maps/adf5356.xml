@@ -478,7 +478,7 @@
         </field>
     </register>
 
-    <register address="0x0B" default_value="0x0061300B" name="REG11">
+    <register address="0x0B" default_value="0x0061200B" name="REG11">
         <field name="RESERVED11_A" bits="31:25">
         Must be set to 0.
         </field>
@@ -488,14 +488,14 @@
         applicatkons that use external PLLs.
         </field>
         <field name="RESERVED11" bits="23:4">
-        Must be set to 0x61300.
+        Must be set to 0x61200.
         </field>
         <field name="CTL11" bits="3:0">
         control bits. 0xB
         </field>
     </register>
     
-    <register address="0x0C" default_value="0xFFFFF5FC" name="REG12">
+    <register address="0x0C" default_value="0x000015FC" name="REG12">
         <field name="PHASE_RESYNC" bits="31:12">
         P20 to P1 (Bits[DB31:DB12]) set the timeout counter for
         activation of phase resync. This value must be set such that

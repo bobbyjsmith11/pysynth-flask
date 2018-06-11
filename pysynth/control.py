@@ -74,6 +74,9 @@ class Cp2130SpiDevice(object):
         # time.sleep(0.1)
         return ret
 
+    def read_int(self, addr):
+        pass
+    
     def reset_pll(self):
         self.disable_pll()
         time.sleep(0.1)
