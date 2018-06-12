@@ -65,12 +65,33 @@ def mixer_conversion_gain(if_freq,
     ad = adf535x.Adf5355()
     ad.initialize()
     ad.change_frequency(lo_freqs[0])
-
+    t = time.asctime()
     fo = open(fname, 'w')
-    fo.write("Conversion Gain\n")
-    fo.write("FREQ\tGAIN\n")
-    print("Conversion Gain")
-    print("FREQ\tGAIN")
+   
+    if lo_side:
+        inj = "LOW SIDE INJECTION"
+    else:
+        inj = "HIGH SIDE INJECTION"
+    
+    # write header 
+    fo.write("# Conversion Gain\n")
+    fo.write("# START FREQ (MHz): {:>20.0f}\n".format(start_freq/1e6))
+    fo.write("# STOP FREQ (MHz):  {:>20.0f}\n".format(stop_freq/1e6))
+    fo.write("# STEP FREQ (MHz):  {:>20.0f}\n".format(stop_freq/1e6))
+    fo.write("# INPUT PWR (dBm):  {:>20.2f}\n".format(in_pwr))
+    fo.write("# INJECTION      :  {:>20s}\n".format(inj))
+    fo.write("########################################\n")
+    fo.write("{:<20s}{:<20s}\n".format("# FREQ (MHz)","GAIN (dB)"))
+    print("# Conversion Gain")
+    print("# START FREQ (MHz): {:>20.0f}".format(start_freq/1e6))
+    print("# STOP FREQ (MHz):  {:>20.0f}".format(stop_freq/1e6))
+    print("# STEP FREQ (MHz):  {:>20.0f}".format(stop_freq/1e6))
+    print("# INPUT PWR (dBm):  {:>20.2f}".format(in_pwr))
+    print("# INJECTION      :  {:>20s}".format(inj))
+    print("########################################")
+    print("{:<20s}{:<20s}".format("# FREQ (MHz)","GAIN (dB)"))
+
+
 
     for i in range(len(rf_freqs)):
         sg.frequency = rf_freqs[i]
@@ -81,10 +102,15 @@ def mixer_conversion_gain(if_freq,
         out_loss = support_tests.get_calibration_value_s2p(CABLE_LOSS_POST_MIXER, if_freq)
         loss = in_loss + out_loss
         gain = (pk - loss) - in_pwr
-        fo.write("%d\t%d\n" % (rf_freqs[i], gain)) 
-        print("%d\t%f" % (rf_freqs[i], gain)) 
+
+        fo.write("{:<20.0f}{:<20.2f}\n".format(rf_freqs[i]/1e6, gain)) 
+        print("{:<20.0f}{:<20.2f}".format(rf_freqs[i]/1e6, gain)) 
+    
+    fo.write("########################################\n")
+    print("########################################")
     print("**** test complete ****")
     fo.close()
+
 
 def get_high_side_freqs(if_freq, start_freq, stop_freq, step_freq):
     """
