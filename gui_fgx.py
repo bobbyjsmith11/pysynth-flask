@@ -2,10 +2,15 @@ from flask import Flask, render_template, request, jsonify
 # from blinky import *
 from pysynth import adf535x
 from pysynth import five_gx
+from pysynth import am3043
 # from pysynth import control
 import time
 
 app = Flask(__name__)
+
+
+# fgx = five_gx.FiveGx()
+
 
 @app.route('/')
 def index():
@@ -43,26 +48,30 @@ def check_lock_detect():
 
 @app.route('/auto_tune', methods=['GET','POST'])
 def auto_tune():
+    fgx = five_gx.FiveGx()
     rf_freq = float(request.json['rf_freq'])    # in GHz
+    # flt_band = am3043.find_closest_cf(rf_freq*1e9)
     d = {}
 
     try:
-        lo_freq, if_freq = five_gx.auto_tune(rf_freq*1e9)
-        # print(lo_freq)
-        # print(if_freq)
+        lo_freq, if_freq = five_gx.get_lo_if(rf_freq*1e9)
+        # # print(lo_freq)
+        # # print(if_freq)
     except Exception as e:
         print(e)
         d['status_code'] = 400
         d['error'] = e
         return jsonify(d)
     
-    d['lo_freq'] = lo_freq
-    d['if_freq'] = if_freq
-
-    ad = adf535x.Adf5355()
-    ad.initialize()
-    ad.change_frequency(lo_freq)
-    time.sleep(0.1)                 # give time to settle
+    rf_freq, lo_freq, if_freq = fgx.tune(rf_freq*1e9)
+    d['lo_freq'] = lo_freq/1e9
+    d['if_freq'] = if_freq/1e9
+    d['rf_freq'] = rf_freq/1e9
+    # ad = adf535x.Adf5355()
+    # ad.initialize()
+    # ad.change_frequency(lo_freq)
+    # ad.spi.set_filter(flt_band)
+    # time.sleep(0.1)                 # give time to settle
     locked = ad.read_muxout()
     # print("locked = " + str(locked))
     d['status_code'] = 200

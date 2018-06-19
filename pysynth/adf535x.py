@@ -33,21 +33,24 @@ THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 class Adf5355(object):
     """
     """
-    def __init__(self, ctl='cp2130'):
+    def __init__(self, spi=None, ctl='cp2130'):
         """ 
         """
-        if ctl == 'cp2130':
-            try:
-                import control
-            except:
-                from .import control
-            self.spi = control.Cp2130SpiDevice()
+        if spi == None:
+            if ctl == 'cp2130':
+                try:
+                    import control
+                except:
+                    from .import control
+                self.spi = control.Cp2130SpiDevice()
+            else:
+                try:
+                    import control_rpi
+                except:
+                    from .import control_rpi
+                self.spi = control_rpi.RpiControl()
         else:
-            try:
-                import control_rpi
-            except:
-                from .import control_rpi
-            self.spi = control_rpi.RpiControl()
+            self.spi = spi
         # if spi == None:
         #         self.spi = control.Sub20Device()
         # else:

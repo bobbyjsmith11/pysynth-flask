@@ -101,6 +101,16 @@ class Cp2130SpiDevice(object):
         """
         self.set_gpio(5, not(state))
 
+    def set_filter(self, band):
+        """
+        """
+        self.set_gpio(6, band & (1 << 0))   # bit A
+        self.set_gpio(7, band & (1 << 1))   # bit B
+        self.set_gpio(8, band & (1 << 2))   # bit C
+        self.set_gpio(9, band & (1 << 3))   # bit D
+        self.set_gpio(10, band & (1 << 4))  # bit E
+
+
     def set_gpio(self, ch, val):
         """ 
         set the state of the gpio
