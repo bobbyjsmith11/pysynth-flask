@@ -4,7 +4,7 @@ MarkupSafe==0.23
 Pillow==2.6.1
 RPi.GPIO==0.6.3
 RTIMULib==7.2.1
-Werkzeug==0.9.6
+Werkzeug==0.15.3
 chardet==2.3.0
 codebug-i2c-tether==0.2.3
 codebug-tether==0.7.0
