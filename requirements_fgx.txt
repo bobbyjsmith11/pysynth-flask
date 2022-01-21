@@ -7,7 +7,7 @@ cp2130==1.1.1
 decorator==4.3.0
 enum34==1.1.6
 Flask==1.0.2
-ipython==5.7.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 itsdangerous==0.24
 Jinja2==2.10
